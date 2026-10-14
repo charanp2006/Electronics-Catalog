@@ -21,16 +21,16 @@ Verify functionality, data integrity, API correctness, and end-to-end flow.
 
 | Test ID | Description | Expected | Status |
 |---|---|---|---|
-| TC-001 | GET /products returns list | 200 OK, array of products | To Test |
-| TC-002 | Search with query returns filtered | Matches name/brand | To Test |
-| TC-003 | Filter by category works | Correct subset | To Test |
-| TC-004 | Price range filter works | Within range | To Test |
-| TC-005 | Sort by price_asc works | Ascending order | To Test |
-| TC-006 | GET /products/{slug} valid | 200 with full details | To Test |
-| TC-007 | GET /products/{invalid} | 404 Not Found | To Test |
-| TC-008 | Frontend loads products | Grid renders | To Test |
-| TC-009 | Search from UI works | Results update | To Test |
-| TC-010 | MongoDB seeded data present | Correct counts | To Test |
+| TC-001 | GET /products returns list | 200 OK, array of products | Pass |
+| TC-002 | Search with query returns filtered | Matches name/brand | Pass |
+| TC-003 | Filter by category works | Correct subset | Pass |
+| TC-004 | Price range filter works | Within range | Pass |
+| TC-005 | Sort by price_asc works | Ascending order | Pass |
+| TC-006 | GET /products/{slug} valid | 200 with full details | Pass |
+| TC-007 | GET /products/{invalid} | 404 Not Found | Pass |
+| TC-008 | Frontend loads products | Grid renders | Pass |
+| TC-009 | Search from UI works | Results update | Pass |
+| TC-010 | MongoDB seeded data present | Correct counts | Pass |
 
 ## 10.5 API Test Examples (curl)
 
@@ -50,12 +50,23 @@ curl http://localhost:8000/api/v1/products/samsung-galaxy-s24
 
 ## 10.6 Validation Checklist
 
-- [ ] All required collections exist in MongoDB
-- [ ] Seed data matches expected counts
-- [ ] API returns correct JSON structure
-- [ ] Frontend fetches without CORS errors
-- [ ] No console errors
-- [ ] Both local and Atlas tested (if configured)
+- [x] All required collections exist in MongoDB
+- [x] Seed data matches expected counts
+- [x] API returns correct JSON structure
+- [x] Frontend fetches without CORS errors
+- [x] No console errors
+- [x] Local environment tested (Atlas pending credentials)
+
+## 10.7 Automated Tests
+
+`backend/tests/` contains 23 `pytest` tests covering products, auth, cart,
+wishlist, reviews and orders. Run with:
+
+```bash
+cd backend
+.venv\Scripts\activate
+pytest
+```
 
 ```mermaid
 flowchart LR

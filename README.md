@@ -5,7 +5,8 @@ Full-stack Electronics Catalog built with FastAPI, MongoDB, and React.js (Vite).
 ## Tech Stack
 
 - **Backend**: FastAPI (Python), PyMongo, Pydantic
-- **Frontend**: React.js + Vite, Tailwind CSS, React Router
+- **Frontend**: React.js + Vite, Tailwind CSS v4, React Router
+- **Motion & UX**: Motion (Framer Motion), GSAP, Lenis smooth scroll
 - **Database**: MongoDB (Local or Atlas)
 
 ## Features
@@ -13,9 +14,14 @@ Full-stack Electronics Catalog built with FastAPI, MongoDB, and React.js (Vite).
 - Product catalog with search, filtering, sorting & pagination
 - Product details with specifications, reviews & price history
 - Category & brand filtering
+- User authentication (register / login with JWT)
+- Shopping cart, wishlist & product comparison (up to 4)
+- Add reviews with live rating recalculation
+- Demo order placement (stock decrement + order history)
 - RESTful API with Swagger documentation
 - Document-based NoSQL data modeling
 - Support for both Local MongoDB and MongoDB Atlas
+- Retro "lab terminal" UI: phosphor palette, CRT scanlines, mono type, motion-driven reveals
 
 ## Project Structure
 
@@ -24,7 +30,7 @@ Electronics catalog/
 ├── backend/           # FastAPI backend
 ├── frontend/          # React + Vite frontend
 ├── docs/              # Project documentation (11 docs + API specs)
-├── implementation/    # Implementation plans (6 step-by-step)
+├── implementation/    # Phase-wise guides (8 phases)
 ├── BRD.md             # Business Requirements Document
 ├── README.md
 └── AGENTS.md
@@ -38,12 +44,12 @@ Choose Local or Atlas. See [docs/11-deployment-plan.md](docs/11-deployment-plan.
 ### 2. Backend Setup
 ```bash
 cd backend
-python -m venv venv
-venv\Scripts\activate  # Windows
+python -m venv .venv
+.venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 cp .env.example .env
-# Update .env with MongoDB URI
-python seed.py  # Seed demo data
+# Update .env with MongoDB URI (ENV=local or atlas)
+python seed.py  # Seed demo data (12 products, 4 categories, 8 brands)
 uvicorn app.main:app --reload --port 8000
 ```
 
@@ -53,6 +59,7 @@ cd frontend
 npm install
 npm run dev
 ```
+The Vite dev server proxies `/api` to `http://localhost:8000`, so no CORS setup is needed.
 
 ## Access
 
@@ -77,13 +84,42 @@ npm run dev
 - [Test Plan](docs/10-test-plan.md)
 - [Deployment Plan](docs/11-deployment-plan.md)
 
-## Implementation Guides
+## Implementation Guides (Phase-Based)
 
-See [implementation/](implementation/) folder for step-by-step instructions.
+The build is organized into **8 sequential phases** (not calendar weeks). Each phase has clear tasks and exit criteria — see [docs/09-development-roadmap.md](docs/09-development-roadmap.md).
+
+| Phase | Guide |
+|---|---|
+| 1 | [Foundation & Environment](implementation/phase-01-foundation-setup.md) |
+| 2 | [Data Layer: Modeling & Seeding](implementation/phase-02-data-layer.md) |
+| 3 | [Backend Core API](implementation/phase-03-backend-core-api.md) |
+| 4 | [Frontend Core UI](implementation/phase-04-frontend-core.md) |
+| 5 | [Auth](implementation/phase-05-auth.md) |
+| 6 | [Cart, Wishlist & Compare](implementation/phase-06-cart-wishlist-compare.md) |
+| 7 | [Reviews & Checkout](implementation/phase-07-reviews-checkout.md) |
+| 8 | [Testing & Deployment](implementation/phase-08-testing-deployment.md) |
 
 ## Demo Credentials (Seed Data)
+- Email: `demo@example.com`
 - Username: `demo`
 - Password: `demo12345`
+
+## Testing
+
+Backend tests use `pytest` (23 tests covering catalog, auth, cart, wishlist, reviews and orders):
+
+```bash
+cd backend
+.venv\Scripts\activate
+pytest
+```
+
+Frontend lint:
+
+```bash
+cd frontend
+npm run lint
+```
 
 ## License
 Academic project - ABA Submission
