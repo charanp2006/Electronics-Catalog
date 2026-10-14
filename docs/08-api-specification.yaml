@@ -1,0 +1,143 @@
+openapi: 3.0.0
+info:
+  title: ElectroHub NoSQL API
+  description: REST API for ElectroHub Electronics Catalog (MongoDB + FastAPI)
+  version: 1.0.0
+  contact:
+    name: ABA Project
+servers:
+  - url: http://localhost:8000/api/v1
+    description: Local development server
+tags:
+  - name: Products
+  - name: Categories
+  - name: Brands
+  - name: Auth
+  - name: Cart
+  - name: Wishlist
+  - name: Reviews
+paths:
+  /products:
+    get:
+      tags: [Products]
+      summary: List all products
+      parameters:
+        - name: q
+          in: query
+          description: Search query
+          schema:
+            type: string
+        - name: category
+          in: query
+          schema:
+            type: string
+        - name: brand
+          in: query
+          schema:
+            type: string
+        - name: min_price
+          in: query
+          schema:
+            type: number
+        - name: max_price
+          in: query
+          schema:
+            type: number
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [price_asc, price_desc, rating_desc, newest]
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 12
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ProductListItem'
+                  total:
+                    type: integer
+                  page:
+                    type: integer
+                  limit:
+                    type: integer
+  /products/{slug}:
+    get:
+      tags: [Products]
+      summary: Get product details
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        '404':
+          description: Not found
+components:
+  schemas:
+    ProductListItem:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        brand:
+          type: object
+        category:
+          type: object
+        price:
+          type: number
+        discount_price:
+          type: number
+        image:
+          type: string
+        average_rating:
+          type: number
+        total_reviews:
+          type: integer
+        stock:
+          type: integer
+    ProductDetail:
+      allOf:
+        - $ref: '#/components/schemas/ProductListItem'
+        - type: object
+          properties:
+            description:
+              type: string
+            specifications:
+              type: array
+              items:
+                type: object
+            reviews:
+              type: array
+              items:
+                type: object
+            price_history:
+              type: array
+              items:
+                type: object
