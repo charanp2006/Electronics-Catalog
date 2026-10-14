@@ -1,18 +1,26 @@
-from pydantic import BaseModel, Field
-from typing import List, Optional, Any
+from pydantic import BaseModel, ConfigDict, Field
+from typing import List, Optional
 from datetime import datetime
 
+
 class BrandRef(BaseModel):
-    _id: str
+    model_config = ConfigDict(populate_by_name=True)
+    id: Optional[str] = Field(default=None, alias="_id")
     name: str
+    slug: Optional[str] = None
+
 
 class CategoryRef(BaseModel):
-    _id: str
+    model_config = ConfigDict(populate_by_name=True)
+    id: Optional[str] = Field(default=None, alias="_id")
     name: str
+    slug: Optional[str] = None
+
 
 class SpecItem(BaseModel):
     key: str
     value: str
+
 
 class ReviewItem(BaseModel):
     user_id: Optional[str] = None
@@ -21,13 +29,16 @@ class ReviewItem(BaseModel):
     comment: str
     created_at: Optional[datetime] = None
 
+
 class PriceHistoryItem(BaseModel):
     old_price: float
     new_price: float
     changed_at: Optional[datetime] = None
 
+
 class ProductList(BaseModel):
-    _id: str
+    model_config = ConfigDict(populate_by_name=True, extra="ignore")
+    id: str = Field(alias="_id")
     name: str
     slug: str
     brand: Optional[BrandRef] = None
@@ -35,14 +46,15 @@ class ProductList(BaseModel):
     price: float
     discount_price: Optional[float] = None
     image: Optional[str] = None
-    average_rating: float
-    total_reviews: int
-    stock: int
-    is_active: bool
+    average_rating: float = 0
+    total_reviews: int = 0
+    stock: int = 0
+    is_active: bool = True
+
 
 class ProductDetail(ProductList):
-    description: str
+    description: Optional[str] = None
     specifications: List[SpecItem] = []
     reviews: List[ReviewItem] = []
     price_history: List[PriceHistoryItem] = []
-    is_featured: bool
+    is_featured: bool = False
