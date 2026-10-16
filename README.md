@@ -61,6 +61,10 @@ npm run dev
 ```
 The Vite dev server proxies `/api` to `http://localhost:8000`, so no CORS setup is needed.
 
+### Deploy the frontend (Netlify)
+Build settings, env vars and SPA redirect: see [docs/12-netlify-deployment.md](docs/12-netlify-deployment.md).
+A ready-to-use [`netlify.toml`](netlify.toml) is included (base `frontend`, build `npm run build`, publish `dist`).
+
 ## Access
 
 - **Frontend**: http://localhost:5173
@@ -83,6 +87,7 @@ The Vite dev server proxies `/api` to `http://localhost:8000`, so no CORS setup 
 - [Development Roadmap](docs/09-development-roadmap.md)
 - [Test Plan](docs/10-test-plan.md)
 - [Deployment Plan](docs/11-deployment-plan.md)
+- [Netlify Deployment (Frontend)](docs/12-netlify-deployment.md)
 
 ## Implementation Guides (Phase-Based)
 
