@@ -73,7 +73,8 @@ Backend will choose URI based on `ENV`:
 
 For the live demo, the frontend is deployed to **Netlify** (static Vite build) and the FastAPI backend runs on a separate Python host backed by **MongoDB Atlas**.
 
-- Frontend build settings, `VITE_API_URL`, SPA redirect and CORS steps: **[12. Netlify Deployment](12-netlify-deployment.md)**
+- Frontend: **[12. Netlify Deployment](12-netlify-deployment.md)**
+- Backend + Atlas + CORS: **[13. Backend + MongoDB Atlas](13-backend-and-atlas-deployment.md)**
 - Backend host: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`, with `ENV=atlas`, a real `MONGODB_URI_ATLAS`, a strong `SECRET_KEY`, and the Netlify domain added to `CORS_ORIGINS`.
 
 ## 11.7 Build & Run (Production Demo)
