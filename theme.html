@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en" data-theme="mongodb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ElectroHub — Theme & Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,400&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* -------------------------------------------------- theme tokens */
+      [data-theme='mongodb'] {
+        --bg: #001e2b;
+        --panel: #062a37;
+        --panel-2: #112733;
+        --ink: #e8edeb;
+        --dim: #889397;
+        --accent: #00ed64;
+        --accent-dim: #00684a;
+        --sig: #71f6ba;
+        --alert: #ff6960;
+        --line: #1c2d38;
+        --line-2: #3d4f58;
+        --on-accent: #001e2b;
+      }
+      [data-theme='phosphor'] {
+        --bg: #07080a;
+        --panel: #0c0f12;
+        --panel-2: #101417;
+        --ink: #d8dcd4;
+        --dim: #79837c;
+        --accent: #ffb020;
+        --accent-dim: #7a5410;
+        --sig: #3ddc84;
+        --alert: #ff5c5c;
+        --line: #1c2228;
+        --line-2: #262d34;
+        --on-accent: #08090b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 14px;
+        line-height: 1.55;
+        letter-spacing: 0.01em;
+        transition: background 0.4s ease, color 0.4s ease;
+      }
+      .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem 6rem;
+      }
+
+      /* -------------------------------------------------- typography */
+      .display {
+        font-family: 'VT323', 'JetBrains Mono', monospace;
+        line-height: 0.9;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      h1 {
+        font-family: 'VT323', monospace;
+        font-size: 3.5rem;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      h2 {
+        font-size: 0.85rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 1rem;
+      }
+      a {
+        color: var(--accent);
+      }
+      .muted {
+        color: var(--dim);
+      }
+      .label {
+        font-size: 0.62rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      section {
+        margin-top: 4rem;
+      }
+
+      /* -------------------------------------------------- surfaces */
+      .panel {
+        position: relative;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 1.25rem;
+      }
+      .frame::before,
+      .frame::after {
+        content: '';
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        pointer-events: none;
+        border-color: var(--accent);
+      }
+      .frame::before {
+        top: -1px;
+        left: -1px;
+        border-top: 1px solid;
+        border-left: 1px solid;
+      }
+      .frame::after {
+        bottom: -1px;
+        right: -1px;
+        border-bottom: 1px solid;
+        border-right: 1px solid;
+      }
+      .hairline {
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(to right, var(--line), transparent);
+      }
+
+      /* -------------------------------------------------- controls */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid var(--line-2);
+        background: var(--panel-2);
+        color: var(--ink);
+        padding: 0.55rem 0.9rem;
+        font: inherit;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .btn-primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+        font-weight: 700;
+      }
+      .btn-primary:hover {
+        color: var(--on-accent);
+        box-shadow: 0 0 0 1px var(--accent), 0 0 22px color-mix(in srgb, var(--accent) 40%, transparent);
+      }
+      .field {
+        width: 100%;
+        background: var(--bg);
+        border: 1px solid var(--line-2);
+        color: var(--ink);
+        padding: 0.6rem 0.75rem;
+        font: inherit;
+        font-size: 0.8rem;
+        outline: none;
+      }
+      .field::placeholder {
+        color: var(--dim);
+      }
+      .field:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent);
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        border: 1px solid var(--line-2);
+        padding: 0.15rem 0.45rem;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--dim);
+      }
+      .chip.accent {
+        border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+        color: var(--accent);
+      }
+      .glow {
+        color: var(--accent);
+        text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 45%, transparent);
+      }
+      .blink {
+        animation: blink 1.05s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* -------------------------------------------------- grid backdrop */
+      .griddemo {
+        position: relative;
+        overflow: hidden;
+        height: 220px;
+        border: 1px solid var(--line);
+        background: var(--bg);
+      }
+      .griddemo .grid,
+      .griddemo .glow,
+      .griddemo .spot {
+        position: absolute;
+        inset: -40px;
+        background-image: linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+        background-size: 44px 44px;
+      }
+      .griddemo .glow {
+        background-image: linear-gradient(var(--accent) 1px, transparent 1px),
+          linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+        filter: drop-shadow(0 0 6px var(--accent));
+        animation: glowpulse 5.5s ease-in-out infinite;
+      }
+      .griddemo .spot {
+        --gx: -40%;
+        --gy: 0%;
+        background-image: linear-gradient(var(--accent) 1px, transparent 1px),
+          linear-gradient(90deg, var(--accent) 1px, transparent 1px);
+        filter: drop-shadow(0 0 6px var(--accent));
+        -webkit-mask-image: radial-gradient(
+          circle at var(--gx) var(--gy),
+          #000 0%,
+          rgba(0, 0, 0, 0.25) 14%,
+          transparent 30%
+        );
+        mask-image: radial-gradient(
+          circle at var(--gx) var(--gy),
+          #000 0%,
+          rgba(0, 0, 0, 0.25) 14%,
+          transparent 30%
+        );
+        animation: spotmove 8s ease-in-out infinite;
+      }
+      @keyframes glowpulse {
+        0%,
+        100% {
+          opacity: 0.06;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+      @keyframes spotmove {
+        0% {
+          --gx: -30%;
+          --gy: 0%;
+        }
+        100% {
+          --gx: 130%;
+          --gy: 90%;
+        }
+      }
+
+      /* -------------------------------------------------- swatches */
+      .grid-2 {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      }
+      .swatches {
+        display: grid;
+        gap: 0.6rem;
+      }
+      .swatch {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 0.5rem 0.75rem;
+      }
+      .swatch .dot {
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        border: 1px solid var(--line-2);
+      }
+      .swatches .name {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .swatches .hex {
+        font-size: 0.7rem;
+        color: var(--dim);
+        margin-left: auto;
+        font-variant-numeric: tabular-nums;
+      }
+      .themecard {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 1rem 1.25rem;
+      }
+      .names {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 0.5rem;
+      }
+      .demo-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        align-items: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.72rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.5rem 0.6rem;
+        border-bottom: 1px solid var(--line);
+      }
+      th {
+        color: var(--dim);
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 0.62rem;
+      }
+      .hexcell {
+        font-family: inherit;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .dot-sm {
+        width: 12px;
+        height: 12px;
+        border: 1px solid var(--line-2);
+        display: inline-block;
+      }
+      .toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+      }
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .theme-scope {
+        padding: 1.25rem;
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .type-display {
+        font-family: 'VT323', monospace;
+        line-height: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn toggle" id="toggle">switch theme</button>
+
+    <div class="wrapper" style="max-width: 1400px; margin: 0 auto; padding: 0 1rem">
+      <header class="top" style="padding: 2.5rem 0 1rem">
+        <div>
+          <p class="label">electrohub · design system</p>
+          <h1>
+            Theme &amp; design system<span class="blink glow">_</span>
+          </h1>
+          <p class="muted" style="max-width: 640px; margin-top: 0.75rem">
+            Two themes, one design pattern. <strong>Phosphor Terminal</strong> is the original
+            amber lab-terminal look. <strong>MongoDB Forest</strong> (based on MongoDB's LeafyGreen
+            palette) is the active theme. Use the button to preview each.
+          </p>
+        </div>
+      </header>
+
+      <div class="hairline"></div>
+
+      <!-- themes -->
+      <section>
+        <h2>01 · theme identity</h2>
+        <div class="grid-2">
+          <div class="theme-scope" data-theme="phosphor">
+            <p class="label">theme a · original</p>
+            <p class="type-display glow" style="font-size: 2.4rem; margin: 0.25rem 0">Phosphor Terminal</p>
+            <p class="muted" style="font-size: 0.72rem">
+              Amber phosphor on near-black · CRT scanlines · pixel display font.
+            </p>
+            <div class="demo-stack" style="margin-top: 1rem">
+              <div class="row">
+                <button class="btn btn-primary">browse catalog</button>
+                <button class="btn">compare</button>
+                <span class="chip accent">-12%</span>
+                <span class="chip" style="color: var(--sig); border-color: var(--sig)">in stock</span>
+              </div>
+              <input class="field" placeholder="> query the catalog" />
+            </div>
+            <div class="label" style="margin-top: 1rem">also known as</div>
+            <div class="names">
+              <span class="chip">Amber CRT</span>
+              <span class="chip">Lab Scope</span>
+              <span class="chip">Cold Boot Terminal</span>
+              <span class="chip">Vintage Instrument</span>
+            </div>
+          </div>
+
+          <div class="theme-scope" data-theme="mongodb">
+            <p class="label">theme b · active</p>
+            <p class="type-display glow" style="font-size: 2.4rem; margin: 0.25rem 0">MongoDB Forest</p>
+            <p class="muted" style="font-size: 0.72rem">
+              Neon MongoDB green on forest teal-black · LeafyGreen palette · glowing grid.
+            </p>
+            <div class="demo-stack" style="margin-top: 1rem">
+              <div class="row">
+                <button class="btn btn-primary">browse catalog</button>
+                <button class="btn">compare</button>
+                <span class="chip accent">-12%</span>
+                <span class="chip" style="color: var(--sig); border-color: var(--sig)">in stock</span>
+              </div>
+              <input class="field" placeholder="> query the catalog" />
+            </div>
+            <div class="label" style="margin-top: 1rem">also known as</div>
+            <div class="names">
+              <span class="chip">Evergreen Terminal</span>
+              <span class="chip">Forest Black</span>
+              <span class="chip">LeafyGreen Dark</span>
+              <span class="chip">Forest Scope</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- swatches -->
+      <section>
+        <h2>02 · color palettes</h2>
+        <div class="grid-2">
+          <div>
+            <p class="label" style="margin-bottom: 0.75rem">Theme A · Phosphor Terminal</p>
+            <div class="swatches" id="sw-amber"></div>
+          </div>
+          <div>
+            <p class="label" style="margin-bottom: 0.75rem">Theme B · MongoDB Forest (active)</p>
+            <div class="swatches" id="sw-mongo"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- components -->
+      <section>
+        <h2>03 · components &amp; surfaces</h2>
+        <div class="grid-2">
+          <div class="panel frame" data-theme="mongodb">
+            <p class="label" style="margin: 0">surface · panel + frame</p>
+            <div class="row" style="margin-top: 1rem">
+              <button class="btn btn-primary">primary</button>
+              <button class="btn">default</button>
+              <span class="chip accent">[x] filter</span>
+            </div>
+            <div class="hairline" style="margin: 1rem 0"></div>
+            <input class="field" placeholder="input field" />
+            <p class="glow" style="margin: 1rem 0 0; font-family: 'VT323', monospace; font-size: 1.8rem">
+              glowing accent 00ED64<span class="blink">_</span>
+            </p>
+          </div>
+          <div class="griddemo" data-theme="mongodb">
+            <div class="grid"></div>
+            <div class="glow"></div>
+            <div class="spot"></div>
+            <p class="label" style="position: absolute; bottom: 0.75rem; left: 0.75rem; margin: 0">
+              animated grid backdrop · glowing lines
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- typography -->
+      <section>
+        <h2>04 · typography</h2>
+        <div class="panel" data-theme="mongodb">
+          <div class="type-display glow" style="font-size: 5rem">Hardware Decoded</div>
+          <p class="muted" style="font-size: 0.7rem; margin: 0.5rem 0 1.25rem">
+            Display: VT323 (pixel/terminal) · Body &amp; UI: JetBrains Mono
+          </p>
+          <p class="label">label · 0.62rem · 0.28em tracking</p>
+          <p style="margin: 0.5rem 0">
+            Body copy — JetBrains Mono 14px. Documents served live from a MongoDB store.
+          </p>
+          <p class="muted" style="font-size: 0.72rem; margin: 0">
+            Muted / secondary — dim token. Metadata, captions, helper text.
+          </p>
+        </div>
+      </section>
+
+      <!-- migration -->
+      <section>
+        <h2>05 · token migration map</h2>
+        <div class="panel" data-theme="mongodb" style="overflow-x: auto">
+          <table id="migration"></table>
+        </div>
+      </section>
+
+      <footer class="muted label" style="margin-top: 4rem">
+        electrohub · theme.md &amp; theme.html · mongoDB forest migration
+      </footer>
+    </div>
+
+    <script>
+      const AMBER = [
+        ['--color-bg', '#07080A', 'page canvas'],
+        ['--color-panel', '#0C0F12', 'surface'],
+        ['--color-panel-2', '#101417', 'raised surface'],
+        ['--color-ink', '#D8DCD4', 'primary text'],
+        ['--color-dim', '#79837C', 'secondary text'],
+        ['--color-phos', '#FFB020', 'amber accent'],
+        ['--color-phos-dim', '#7A5410', 'muted accent'],
+        ['--color-sig', '#3DDC84', 'success'],
+        ['--color-alert', '#FF5C5C', 'error'],
+        ['--color-line', '#1C2228', 'border'],
+        ['--color-line-2', '#262D34', 'strong border'],
+      ]
+      const MONGO = [
+        ['--color-bg', '#001E2B', 'MDB Black · canvas'],
+        ['--color-panel', '#062A37', 'surface'],
+        ['--color-panel-2', '#112733', 'Gray/Dark 4 · raised'],
+        ['--color-ink', '#E8EDEB', 'Gray/Light 2 · text'],
+        ['--color-dim', '#889397', 'Gray/Base · secondary'],
+        ['--color-phos', '#00ED64', 'MongoDB Green · accent'],
+        ['--color-phos-dim', '#00684A', 'Green/Dark 2 · muted'],
+        ['--color-sig', '#71F6BA', 'Green/Light 1 · success'],
+        ['--color-alert', '#FF6960', 'Red/Light 1 · error'],
+        ['--color-line', '#1C2D38', 'Gray/Dark 3 · border'],
+        ['--color-line-2', '#3D4F58', 'Gray/Dark 2 · strong'],
+      ]
+
+      function renderSwatches(id, rows) {
+        document.getElementById(id).innerHTML = rows
+          .map(
+            ([token, hex, role]) => `
+            <div class="swatches" style="display:contents">
+              <div class="swatch">
+                <span class="dot" style="background:${hex}"></span>
+                <span>
+                  <span style="display:block;font-size:.72rem">${role}</span>
+                  <span class="label" style="letter-spacing:.1em">${token}</span>
+                </span>
+                <span class="hexcell" style="margin-left:auto">${hex}</span>
+              </div>
+            </div>`
+          )
+          .join('')
+      }
+      renderSwatches('sw-amber', AMBER)
+      renderSwatches('sw-mongo', MONGO)
+
+      function renderMigration() {
+        const rows = AMBER.map(([token, hex], i) => {
+          const [mToken, mHex] = MONGO[i]
+          return `<tr>
+            <td class="muted">${token}</td>
+            <td><span class="hexcell"><span class="dot-sm" style="background:${hex}"></span>${hex}</span></td>
+            <td><span class="hexcell"><span class="dot-sm" style="background:${mHex}"></span>${mHex}</span></td>
+          </tr>`
+        }).join('')
+        document.getElementById('migration').innerHTML =
+          `<thead><tr><th>token</th><th>phosphor terminal</th><th>mongoDB forest</th></tr></thead><tbody>${rows}</tbody>`
+      }
+      renderMigration()
+
+      document.getElementById('toggle').addEventListener('click', () => {
+        const root = document.documentElement
+        root.dataset.theme = root.dataset.theme === 'mongodb' ? 'phosphor' : 'mongodb'
+      })
+    </script>
+  </body>
+</html>

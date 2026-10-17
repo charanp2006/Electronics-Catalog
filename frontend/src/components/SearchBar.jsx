@@ -27,7 +27,7 @@ export default function SearchBar({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full bg-transparent py-1.5 pr-2 text-xs text-ink outline-none placeholder:text-[#4c554e]"
+        className="w-full bg-transparent py-1.5 pr-2 text-xs text-ink outline-none placeholder:text-[#5c6c75]"
       />
       <button
         type="submit"
