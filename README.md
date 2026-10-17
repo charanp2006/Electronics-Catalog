@@ -88,6 +88,7 @@ A ready-to-use [`netlify.toml`](netlify.toml) is included (base `frontend`, buil
 - [Test Plan](docs/10-test-plan.md)
 - [Deployment Plan](docs/11-deployment-plan.md)
 - [Netlify Deployment (Frontend)](docs/12-netlify-deployment.md)
+- [Backend + MongoDB Atlas (Render)](docs/13-backend-and-atlas-deployment.md)
 
 ## Implementation Guides (Phase-Based)
 

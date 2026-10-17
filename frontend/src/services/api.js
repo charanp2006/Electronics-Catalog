@@ -12,6 +12,18 @@ api.interceptors.request.use((config) => {
   return config
 })
 
+api.interceptors.response.use((response) => {
+  const contentType = response.headers?.['content-type'] || ''
+  if (contentType.includes('text/html')) {
+    return Promise.reject(
+      new Error(
+        'API returned HTML instead of JSON. Set VITE_API_URL to your backend URL (including /api/v1) and redeploy.'
+      )
+    )
+  }
+  return response
+})
+
 export function extractError(error) {
   const detail = error?.response?.data?.detail
   if (typeof detail === 'string') return detail
