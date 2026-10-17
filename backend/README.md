@@ -1,6 +1,6 @@
-# ElectroHub Backend (FastAPI + MongoDB)
+# ElectroHub API (FastAPI)
 
-FastAPI backend for ElectroHub NoSQL e-commerce catalog.
+FastAPI backend for the ElectroHub electronics catalog (catalog, pricing, cart & orders).
 
 ## Tech Stack
 - FastAPI

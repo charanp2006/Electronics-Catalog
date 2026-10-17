@@ -110,7 +110,7 @@ export default function Products() {
           {data && data.items.length === 0 && (
             <EmptyState
               title="no matches"
-              message="No documents matched this query. Adjust the parameters and run again."
+              message="No products matched this query. Adjust the parameters and run again."
               action={
                 <button type="button" onClick={() => setSearchParams({})} className="btn btn-primary">
                   reset query

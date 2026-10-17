@@ -11,10 +11,10 @@ import GridBackdrop from '../components/ui/GridBackdrop'
 import { SecHead } from '../components/ui/Blocks'
 
 const BOOT = [
-  'connection established',
-  '4 collections indexed',
-  '12 documents loaded',
-  'price-tracker online',
+  'connection secured',
+  'catalog synced',
+  '12 products loaded',
+  'price tracker online',
   'catalog ready',
 ]
 
@@ -45,8 +45,7 @@ export default function Home() {
             </h1>
             <p className="max-w-xl text-xs leading-relaxed text-dim sm:text-sm">
               A precision index of smartphones, laptops, audio and displays. Query the catalog,
-              trace price history, and compare units — every document served live from a MongoDB
-              store.
+              trace price history, and compare units — all in real time.
             </p>
             <div className="flex flex-wrap gap-2">
               <Link to="/products" className="btn btn-primary">

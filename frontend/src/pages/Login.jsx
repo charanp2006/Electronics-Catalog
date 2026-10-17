@@ -9,7 +9,7 @@ export default function Login() {
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
-  const [form, setForm] = useState({ email: 'demo@example.com', password: 'demo12345' })
+  const [form, setForm] = useState({ email: '', password: '' })
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
 
@@ -61,9 +61,6 @@ export default function Login() {
           <Link to="/register" className="text-phos hover:underline">
             register operator
           </Link>
-        </p>
-        <p className="border border-line-2 bg-panel-2 p-3 text-[11px] text-dim">
-          <span className="text-phos">demo →</span> demo@example.com / demo12345
         </p>
       </Frame>
     </div>

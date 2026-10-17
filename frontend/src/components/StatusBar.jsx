@@ -17,9 +17,9 @@ export default function StatusBar() {
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-sig" />
           online
         </span>
-        <span className="hidden sm:inline">db: mongodb://local</span>
+        <span className="hidden sm:inline">catalog: live</span>
         <span className="flex-1" />
-        <span className="hidden md:inline">fastapi · pymongo · react</span>
+        <span className="hidden md:inline">electrohub · v2.0</span>
         <span className="truncate text-phos">{pathname}</span>
         <span className="hidden sm:inline tabular-nums">{now.toLocaleTimeString('en-GB')}</span>
       </div>

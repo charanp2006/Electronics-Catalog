@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Seed the ElectroHub MongoDB database with demo data.
+"""Seed the ElectroHub database with sample catalog data.
 
 Usage:
     python seed.py
 
 Drops and recreates the core collections, inserts categories, brands,
-products (with embedded specs/reviews/price history), a demo user and
+products (with embedded specs/reviews/price history), a sample user and
 required indexes.
 """
 from datetime import datetime, timedelta, timezone

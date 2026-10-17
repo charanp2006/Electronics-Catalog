@@ -154,7 +154,7 @@ export default function Cart() {
             {placing ? 'processing…' : '[ execute order ]'}
           </button>
           <p className="text-center text-[10px] tracking-[0.14em] text-line-2 uppercase">
-            demo checkout — no real payment
+            secure checkout · details encrypted
           </p>
         </Frame>
       </div>

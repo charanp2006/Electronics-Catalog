@@ -33,8 +33,8 @@ export default function Footer() {
             <span className="blink text-phos">_</span>
           </div>
           <p className="mt-3 max-w-sm text-xs leading-relaxed text-dim">
-            An electronics catalog rendered as a lab terminal. Documents served straight from
-            MongoDB, assembled for the ABA NoSQL project.
+            A precision catalog for consumer electronics. Browse, compare, and track price history
+            across smartphones, laptops, audio, and displays.
           </p>
           <p className="mt-4 text-[10px] tracking-[0.2em] text-dim uppercase">
             <span className="text-sig">●</span> all systems nominal
@@ -62,7 +62,7 @@ export default function Footer() {
 
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-2 px-4 py-4 text-[10px] tracking-[0.2em] text-dim uppercase">
-          <span>© {YEAR} electrohub — abA project</span>
+          <span>© {YEAR} electrohub · all rights reserved</span>
           <span className="text-phos">
             [EOF]<span className="blink">_</span>
           </span>
