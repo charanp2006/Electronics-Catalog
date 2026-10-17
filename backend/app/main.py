@@ -15,9 +15,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="ElectroHub NoSQL API",
+    title="ElectroHub API",
     version="1.0.0",
-    description="Electronics catalog API backed by MongoDB.",
+    description="ElectroHub — catalog, pricing, cart and orders API.",
     lifespan=lifespan,
 )
 
@@ -40,7 +40,7 @@ app.include_router(orders.router, prefix=settings.API_V1_PREFIX)
 
 @app.get("/", tags=["Health"])
 def root():
-    return {"message": "ElectroHub NoSQL API is running", "version": "1.0.0"}
+    return {"message": "ElectroHub API is running", "version": "1.0.0"}
 
 
 @app.get("/health", tags=["Health"])

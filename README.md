@@ -1,6 +1,8 @@
-# ElectroHub - NoSQL Edition
+# ElectroHub
 
-Full-stack Electronics Catalog built with FastAPI, MongoDB, and React.js (Vite). This project demonstrates NoSQL database concepts, document modeling, and end-to-end integration for ABA submission.
+ElectroHub is a full-stack consumer-electronics catalog: browse, search, compare and track price
+history across a curated range of smartphones, laptops, audio and displays. Built with FastAPI,
+MongoDB and React (Vite).
 
 ## Tech Stack
 
@@ -17,11 +19,11 @@ Full-stack Electronics Catalog built with FastAPI, MongoDB, and React.js (Vite).
 - User authentication (register / login with JWT)
 - Shopping cart, wishlist & product comparison (up to 4)
 - Add reviews with live rating recalculation
-- Demo order placement (stock decrement + order history)
+- Order placement (stock decrement + order history)
 - RESTful API with Swagger documentation
-- Document-based NoSQL data modeling
+- Document-based data modeling
 - Support for both Local MongoDB and MongoDB Atlas
-- Retro "lab terminal" UI: phosphor palette, CRT scanlines, mono type, motion-driven reveals
+- Terminal-inspired UI: MongoDB Forest theme, CRT scanlines, mono type, motion-driven reveals
 
 ## Project Structure
 
@@ -49,7 +51,7 @@ python -m venv .venv
 pip install -r requirements.txt
 cp .env.example .env
 # Update .env with MongoDB URI (ENV=local or atlas)
-python seed.py  # Seed demo data (12 products, 4 categories, 8 brands)
+python seed.py  # Seed sample data (12 products, 4 categories, 8 brands)
 uvicorn app.main:app --reload --port 8000
 ```
 
@@ -105,7 +107,7 @@ The build is organized into **8 sequential phases** (not calendar weeks). Each p
 | 7 | [Reviews & Checkout](implementation/phase-07-reviews-checkout.md) |
 | 8 | [Testing & Deployment](implementation/phase-08-testing-deployment.md) |
 
-## Demo Credentials (Seed Data)
+## Sample Account (Seed Data)
 - Email: `demo@example.com`
 - Username: `demo`
 - Password: `demo12345`
@@ -126,6 +128,7 @@ Frontend lint:
 cd frontend
 npm run lint
 ```
-
 ## License
-Academic project - ABA Submission
+
+Released for educational use. See [BRD.md](BRD.md) and the `docs/` folder for full product
+documentation and academic context.

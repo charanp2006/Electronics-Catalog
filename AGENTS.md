@@ -1,9 +1,9 @@
 # AGENTS.md
 
-This project follows the recommended NoSQL stack: FastAPI + MongoDB + React.js (Vite).
+Stack: FastAPI + MongoDB + React.js (Vite).
 
 ## Project Overview
-ElectroHub NoSQL Edition - Full-stack electronics catalog demonstrating MongoDB usage.
+ElectroHub - full-stack consumer-electronics catalog (search, compare, price history).
 
 ## Key Commands
 
