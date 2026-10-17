@@ -4,7 +4,6 @@ import { motion } from 'motion/react'
 import { useLenis } from 'lenis/react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-import Ticker from './Ticker'
 import StatusBar from './StatusBar'
 import Overlays from './Overlays'
 import { EASE } from './ui/Reveal'
@@ -35,7 +34,6 @@ export default function Layout() {
           wishCount={wishCount}
           compareCount={compareCount}
         />
-        <Ticker />
         <motion.main
           key={location.pathname}
           initial={{ opacity: 0, y: 10 }}

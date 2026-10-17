@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import Marquee from './ui/Marquee'
 
 const YEAR = new Date().getFullYear()
 
@@ -27,12 +26,6 @@ const COLS = [
 export default function Footer() {
   return (
     <footer className="border-t border-line bg-panel/40">
-      <Marquee
-        items={['ELECTROHUB', 'NOSQL EDITION', 'FASTAPI', 'MONGODB', 'REACT', 'PYMONGO', 'VITE']}
-        speed={30}
-        className="border-b border-line py-2 font-display text-xl tracking-[0.3em] text-dim uppercase"
-      />
-
       <div className="mx-auto grid max-w-[1400px] gap-10 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <div className="flex items-baseline gap-1">

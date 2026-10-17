@@ -10,7 +10,7 @@ export default function Field({ label, type = 'text', value, onChange, placehold
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent py-2 pr-2.5 text-xs text-ink outline-none placeholder:text-[#4c554e]"
+          className="w-full bg-transparent py-2 pr-2.5 text-xs text-ink outline-none placeholder:text-[#5c6c75]"
         />
       </span>
     </label>

@@ -1,18 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Palette — phosphor terminal on near-black */
-  --color-bg: #07080a;
-  --color-panel: #0c0f12;
-  --color-panel-2: #101417;
-  --color-ink: #d8dcd4;
-  --color-dim: #79837c;
-  --color-phos: #ffb020;
-  --color-phos-dim: #7a5410;
-  --color-sig: #3ddc84;
-  --color-alert: #ff5c5c;
-  --color-line: #1c2228;
-  --color-line-2: #262d34;
+  /* Palette — MongoDB Forest (LeafyGreen): neon green on forest black */
+  --color-bg: #001e2b;
+  --color-panel: #062a37;
+  --color-panel-2: #112733;
+  --color-ink: #e8edeb;
+  --color-dim: #889397;
+  --color-phos: #00ed64;
+  --color-phos-dim: #00684a;
+  --color-sig: #71f6ba;
+  --color-alert: #ff6960;
+  --color-line: #1c2d38;
+  --color-line-2: #3d4f58;
 
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-display: 'VT323', 'JetBrains Mono', monospace;
@@ -58,7 +58,7 @@ html.lenis body {
 
 ::selection {
   background: var(--color-phos);
-  color: #08090b;
+  color: #001e2b;
 }
 
 /* Scrollbar */
@@ -67,11 +67,11 @@ html.lenis body {
   height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0c0e;
+  background: #001822;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232a31;
-  border: 2px solid #0a0c0e;
+  background: #1c2d38;
+  border: 2px solid #001822;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-phos-dim);
@@ -183,10 +183,10 @@ html.lenis body {
 }
 
 .glow {
-  text-shadow: 0 0 12px rgba(255, 176, 32, 0.45);
+  text-shadow: 0 0 12px rgba(0, 237, 100, 0.45);
 }
 .glow-soft {
-  text-shadow: 0 0 10px rgba(255, 176, 32, 0.25);
+  text-shadow: 0 0 10px rgba(0, 237, 100, 0.25);
 }
 
 /* ------------------------------------------------------------ animation */
@@ -203,20 +203,6 @@ html.lenis body {
   }
 }
 
-.ticker-track {
-  display: inline-flex;
-  white-space: nowrap;
-  animation: ticker 32s linear infinite;
-}
-.ticker:hover .ticker-track {
-  animation-play-state: paused;
-}
-@keyframes ticker {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .sweep {
   position: relative;
   overflow: hidden;
@@ -229,7 +215,7 @@ html.lenis body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 176, 32, 0.16),
+    rgba(0, 237, 100, 0.16),
     transparent
   );
   transition: transform 0.7s ease;
@@ -246,11 +232,35 @@ html.lenis body {
   mask-image: radial-gradient(90% 80% at 50% 0%, #000 10%, transparent 85%);
 }
 
+/* glowing grid lines — bright accent lines with a bloom */
+.grid-glow {
+  background-image: linear-gradient(var(--color-phos) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-phos) 1px, transparent 1px);
+  background-size: 44px 44px;
+  filter: drop-shadow(0 0 6px var(--color-phos));
+}
+
+/* a travelling spotlight that lights up a band of lines as it moves */
+.grid-glow-spot {
+  -webkit-mask-image: radial-gradient(
+    circle at var(--gx, -40%) var(--gy, 0%),
+    #000 0%,
+    rgba(0, 0, 0, 0.25) 14%,
+    transparent 30%
+  );
+  mask-image: radial-gradient(
+    circle at var(--gx, -40%) var(--gy, 0%),
+    #000 0%,
+    rgba(0, 0, 0, 0.25) 14%,
+    transparent 30%
+  );
+}
+
 .scanbar {
   height: 100%;
   width: 32%;
   background: var(--color-phos);
-  box-shadow: 0 0 12px rgba(255, 176, 32, 0.6);
+  box-shadow: 0 0 12px rgba(0, 237, 100, 0.6);
   animation: scanbar 1.15s ease-in-out infinite;
 }
 @keyframes scanbar {
@@ -310,12 +320,12 @@ html.lenis body {
 .btn-primary {
   background: var(--color-phos);
   border-color: var(--color-phos);
-  color: #08090b;
+  color: #001e2b;
   font-weight: 700;
 }
 .btn-primary:hover:not(:disabled) {
-  color: #08090b;
-  box-shadow: 0 0 0 1px var(--color-phos), 0 0 22px rgba(255, 176, 32, 0.4);
+  color: #001e2b;
+  box-shadow: 0 0 0 1px var(--color-phos), 0 0 22px rgba(0, 237, 100, 0.4);
 }
 .btn-danger:hover:not(:disabled) {
   border-color: var(--color-alert);
@@ -324,7 +334,7 @@ html.lenis body {
 
 .field {
   width: 100%;
-  background: #080a0c;
+  background: #001822;
   border: 1px solid var(--color-line-2);
   color: var(--color-ink);
   padding: 0.6rem 0.75rem;
@@ -334,11 +344,11 @@ html.lenis body {
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 .field::placeholder {
-  color: #4c554e;
+  color: #5c6c75;
 }
 .field:focus {
   border-color: var(--color-phos);
-  box-shadow: 0 0 0 1px rgba(255, 176, 32, 0.35);
+  box-shadow: 0 0 0 1px rgba(0, 237, 100, 0.35);
 }
 
 .label {

@@ -7,7 +7,7 @@ import { Frame } from '../components/ui/Frame'
 import { Reveal } from '../components/ui/Reveal'
 import Scramble from '../components/ui/Scramble'
 import CountUp from '../components/ui/CountUp'
-import Marquee from '../components/ui/Marquee'
+import GridBackdrop from '../components/ui/GridBackdrop'
 import { SecHead } from '../components/ui/Blocks'
 
 const BOOT = [
@@ -30,7 +30,7 @@ export default function Home() {
     <div className="space-y-14">
       {/* ---------------------------------------------------------- hero */}
       <section className="panel frame relative overflow-hidden">
-        <div className="grid-bg absolute inset-0 opacity-70" />
+        <GridBackdrop />
         <div className="relative grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
           <div className="space-y-6">
             <Scramble
@@ -82,15 +82,6 @@ export default function Home() {
           </Frame>
         </div>
       </section>
-
-      {/* ------------------------------------------------------- brands */}
-      <div className="panel overflow-hidden">
-        <Marquee
-          items={(brands || []).map((b) => b.name.toUpperCase())}
-          speed={28}
-          className="py-3 font-display text-2xl tracking-[0.25em] text-dim uppercase"
-        />
-      </div>
 
       {/* --------------------------------------------------- categories */}
       <section>
