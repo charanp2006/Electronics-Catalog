@@ -1,10 +1,10 @@
 from typing import Any, Dict, List
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 from app.utils.serialization import serialize
 
 
-class BrandRepository:
+class BrandRepository(BaseRepository):
     def __init__(self):
         self.collection = get_db()["brands"]
 

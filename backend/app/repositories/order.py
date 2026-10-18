@@ -4,12 +4,12 @@ from typing import Any, Dict, List
 from bson import ObjectId
 from fastapi import HTTPException
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 from app.repositories.cart import CartRepository
 from app.utils.serialization import serialize
 
 
-class OrderRepository:
+class OrderRepository(BaseRepository):
     def __init__(self):
         self.db = get_db()
         self.collection = self.db["orders"]

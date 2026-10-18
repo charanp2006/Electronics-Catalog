@@ -1,11 +1,11 @@
 from datetime import datetime, timezone
 from typing import Any, Dict, Optional
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 from app.utils.serialization import serialize
 
 
-class ProductRepository:
+class ProductRepository(BaseRepository):
     def __init__(self):
         self.db = get_db()
         self.collection = self.db["products"]

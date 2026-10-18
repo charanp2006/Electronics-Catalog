@@ -3,13 +3,13 @@ from typing import Any, Dict, List
 
 from bson import ObjectId
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 from app.utils.serialization import serialize
 
 SUMMARY_PROJECTION = {"reviews": 0, "price_history": 0}
 
 
-class WishlistRepository:
+class WishlistRepository(BaseRepository):
     def __init__(self):
         self.db = get_db()
         self.collection = self.db["wishlists"]
