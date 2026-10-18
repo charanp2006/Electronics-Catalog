@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ElectroHub Admin CMS — Visual Mockups</title>
+<link rel="stylesheet" href="mockup.css" />
+<style>
+  .hero { padding: 32px 26px; margin-bottom: 22px; }
+  .section-title { font-family: 'VT323', monospace; font-size: 26px; color: var(--phos); margin: 26px 0 12px; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  ul.clean { list-style: none; padding: 0; margin: 0; }
+</style>
+</head>
+<body>
+<main class="content" style="max-width:1180px;margin:0 auto;">
+  <div class="page-head" style="margin-top:8px">
+    <span class="label">docs / admin-cms / mockups</span>
+  </div>
+  <h1 class="display" style="font-size:46px;color:var(--phos)">ElectroHub&nbsp;Admin CMS</h1>
+  <p class="dim" style="max-width:760px">
+    Static visual reference for the Admin CMS design. These are <strong>non-functional</b>
+    mockups (no backend, no JS logic) — use them to agree on layout, typography and the
+    MongoDB Forest theme before implementation. Each screen below exists in two flavours:
+    <strong>Option B</strong> (React SPA, sidebar) and <strong>Option A</strong> (server-rendered, top bar).
+  </p>
+
+  <div class="mock-note" style="margin:16px 0 26px">
+    Theme tokens: bg <span class="phos">#001e2b</span> · panel #062a37 · ink #e8edeb ·
+    dim #889397 · phos <span class="phos">#00ed64</span> · alert <span class="err">#ff6960</span> ·
+    fonts JetBrains Mono + VT323.
+  </div>
+
+  <h2 class="display" style="font-size:26px;color:var(--phos);margin:0 0 12px">Option B — React SPA <span class="badge badge--phos">/admin-cms</span></h2>
+  <div class="grid grid-3">
+    <a class="card-link" href="option-b/login.html"><span class="label">auth</span><h3>Login</h3><p>Admin sign-in, 403 handling</p></a>
+    <a class="card-link" href="option-b/dashboard.html"><span class="label">overview</span><h3>Dashboard</h3><p>Counters + recent orders</p></a>
+    <a class="card-link" href="option-b/products.html"><span class="label">catalog</span><h3>Products</h3><p>Admin table, filters, row actions</p></a>
+    <a class="card-link" href="option-b/product-form.html"><span class="label">catalog</span><h3>Product form</h3><p>Create/edit + image URL field</p></a>
+    <a class="card-link" href="option-b/categories.html"><span class="label">catalog</span><h3>Categories</h3><p>CRUD + product counts</p></a>
+    <a class="card-link" href="option-b/brands.html"><span class="label">catalog</span><h3>Brands</h3><p>CRUD + countries</p></a>
+    <a class="card-link" href="option-b/orders.html"><span class="label">sales</span><h3>Orders</h3><p>Status tabs, list</p></a>
+    <a class="card-link" href="option-b/order-detail.html"><span class="label">sales</span><h3>Order detail</h3><p>Items, totals, status stepper</p></a>
+    <a class="card-link" href="option-b/reviews.html"><span class="label">feedback</span><h3>Reviews</h3><p>Moderation across products</p></a>
+  </div>
+
+  <h2 class="display" style="font-size:26px;color:var(--phos);margin:28px 0 12px">Option A — Server-rendered <span class="badge badge--dim">/admin</span></h2>
+  <div class="grid grid-3">
+    <a class="card-link" href="option-a/login.html"><span class="label">auth</span><h3>Login</h3><p>Cookie session + CSRF</p></a>
+    <a class="card-link" href="option-a/dashboard.html"><span class="label">overview</span><h3>Dashboard</h3><p>HTML stats</p></a>
+    <a class="card-link" href="option-a/products.html"><span class="label">catalog</span><h3>Products</h3><p>GET search, POST actions</p></a>
+    <a class="card-link" href="option-a/product-form.html"><span class="label">catalog</span><h3>Product form</h3><p>Plain form + CSRF token</p></a>
+    <a class="card-link" href="option-a/categories.html"><span class="label">catalog</span><h3>Categories</h3><p>CRUD</p></a>
+    <a class="card-link" href="option-a/brands.html"><span class="label">catalog</span><h3>Brands</h3><p>CRUD</p></a>
+    <a class="card-link" href="option-a/orders.html"><span class="label">sales</span><h3>Orders</h3><p>List</p></a>
+    <a class="card-link" href="option-a/order-detail.html"><span class="label">sales</span><h3>Order detail</h3><p>Status transitions</p></a>
+    <a class="card-link" href="option-a/reviews.html"><span class="label">feedback</span><h3>Reviews</h3><p>Moderation</p></a>
+  </div>
+
+  <p class="dim" style="margin-top:28px;font-size:11px">
+    Reference docs: <a class="phos" href="../05-ui-ux-design.md">05-ui-ux-design.md</a> ·
+    <a class="phos" href="../04-api-specification.md">04-api-specification.md</a>
+  </p>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Login — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; }
+  .login { width: 380px; max-width: 92vw; position: relative; z-index: 2; }
+  .login .head { display: flex; align-items: baseline; gap: 8px; justify-content: center; margin-bottom: 4px; }
+  .login .logo { font-family: 'VT323', monospace; font-size: 40px; color: var(--phos); }
+</style>
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · login</div>
+
+<div class="login">
+  <div class="head">
+    <span class="logo">electrohub</span>
+    <span class="badge badge--phos">admin</span>
+  </div>
+  <p class="label" style="text-align:center;margin:0 0 18px">[01] control panel access</p>
+
+  <form class="panel frame pad-lg" onsubmit="return false">
+    <div class="field">
+      <span class="label">email</span>
+      <span class="prefix"><span class="p">&gt;</span><input class="input" type="email" value="owner@example.com" autocomplete="username" /></span>
+    </div>
+    <div class="field">
+      <span class="label">password</span>
+      <span class="prefix"><span class="p">&gt;</span><input class="input" type="password" value="secret-admin" autocomplete="current-password" /></span>
+    </div>
+    <label class="checkrow" style="margin:2px 0 16px"><input type="checkbox" /> keep me signed in</label>
+    <button class="btn btn--phos btn--block" type="submit">authenticate →</button>
+    <p class="help" style="margin:12px 0 0;text-align:center">
+      this account is not an administrator — <span class="err">403</span> example
+    </p>
+  </form>
+
+  <p class="help" style="text-align:center;margin-top:16px">
+    admin only · <a class="phos" href="../index.html">← mockups</a>
+  </p>
+</div>
+</body>
+</html>

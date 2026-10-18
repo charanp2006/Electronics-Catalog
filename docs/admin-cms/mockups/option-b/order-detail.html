@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Order Detail — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · order detail</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html" class="active">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot"><a class="btn btn--sm btn--block" href="../index.html">view storefront</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / orders / #b2e7…41</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <h1>order #b2e7…41</h1>
+        <span class="badge badge--sig">processing</span>
+        <div class="spacer"></div>
+        <a class="btn" href="orders.html">← all orders</a>
+      </div>
+
+      <div class="panel pad" style="margin-bottom:14px">
+        <span class="label" style="display:block;margin-bottom:12px">status lifecycle</span>
+        <div class="step-row" style="display:flex;flex-wrap:wrap">
+          <span class="step">pending</span>
+          <span class="step current">processing</span>
+          <span class="step">shipped</span>
+          <span class="step">delivered</span>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <div class="field" style="margin:0"><span class="label">set status</span>
+            <select><option>shipped</option><option>delivered</option><option>cancelled</option></select></div>
+          <button class="btn btn--phos">update status</button>
+          <span class="help">allowed: processing → shipped | cancelled</span>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="align-items:start">
+        <div class="panel" style="grid-column:1 / -1">
+          <div class="pad" style="border-bottom:1px solid var(--line)"><span class="label">items</span></div>
+          <div class="table-wrap">
+            <table class="table">
+              <thead><tr><th></th><th>product</th><th class="num">price</th><th class="num">qty</th><th class="num">line total</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><img class="thumb" src="https://picsum.photos/seed/apple-macbook-air-m3/60/60" alt="" /></td>
+                  <td><div>Apple MacBook Air M3</div><div class="dim mono" style="font-size:11px">apple-macbook-air-m3</div></td>
+                  <td class="num">114,900.00</td><td class="num">1</td><td class="num">104,900.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pad" style="display:flex;justify-content:flex-end">
+            <div style="min-width:240px">
+              <div class="row" style="justify-content:space-between;font-size:12px"><span class="dim">subtotal</span><span>114,900.00</span></div>
+              <div class="row" style="justify-content:space-between;font-size:12px"><span class="dim">discount</span><span>-10,000.00</span></div>
+              <div class="row" style="justify-content:space-between;margin-top:6px;padding-top:8px;border-top:1px solid var(--line)"><span class="label">total</span><span class="phos" style="font-size:16px">104,900.00</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel pad-lg">
+          <p class="label" style="margin:0 0 12px">customer</p>
+          <div class="grid" style="gap:8px;font-size:12px">
+            <div class="row" style="justify-content:space-between"><span class="dim">username</span><span>priya</span></div>
+            <div class="row" style="justify-content:space-between"><span class="dim">email</span><span>priya@example.com</span></div>
+            <div class="row" style="justify-content:space-between"><span class="dim">user id</span><span class="mono">#f91c…</span></div>
+          </div>
+        </div>
+
+        <div class="panel pad-lg">
+          <p class="label" style="margin:0 0 12px">history</p>
+          <div style="font-size:12px;display:grid;gap:8px">
+            <div class="row" style="justify-content:space-between"><span><span class="dot dot--dim"></span> pending</span><span class="dim">2d ago</span></div>
+            <div class="row" style="justify-content:space-between"><span><span class="dot"></span> processing</span><span class="dim">yesterday · by owner</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

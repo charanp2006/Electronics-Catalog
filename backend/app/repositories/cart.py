@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 from bson import ObjectId
 from fastapi import HTTPException
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 from app.utils.serialization import serialize
 
 
@@ -12,7 +12,7 @@ def _now() -> datetime:
     return datetime.now(timezone.utc)
 
 
-class CartRepository:
+class CartRepository(BaseRepository):
     def __init__(self):
         self.db = get_db()
         self.collection = self.db["carts"]

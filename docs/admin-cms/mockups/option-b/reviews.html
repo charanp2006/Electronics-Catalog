@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reviews — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+<style>
+  .stars { letter-spacing: 3px; color: var(--phos); }
+  .stars .off { color: var(--line-2); }
+</style>
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · reviews</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html" class="active">reviews</a>
+    </nav>
+    <div class="sidebar-foot"><a class="btn btn--sm btn--block" href="../index.html">view storefront</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / reviews</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content wide">
+      <div class="page-head">
+        <h1>reviews</h1><span class="label">15 total · <span class="err">1 hidden</span></span>
+        <div class="spacer"></div>
+      </div>
+
+      <div class="filters panel pad" style="margin-bottom:14px">
+        <div class="field" style="min-width:200px;flex:1"><span class="label">search</span>
+          <span class="prefix"><span class="p">&gt;</span><input class="input" placeholder="comment or username…" /></span></div>
+        <div class="field"><span class="label">status</span><select><option>all</option><option>published</option><option>hidden</option></select></div>
+        <div class="field"><span class="label">rating</span><select><option>all</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>
+        <button class="btn">apply</button>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>product</th><th>author</th><th>rating</th><th>comment</th><th>status</th><th>when</th><th class="actions">actions</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><a class="phos" href="javascript:void(0)">Samsung Galaxy S24</a></td>
+                <td>demo</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td class="dim">Best noise cancellation on the market.</td>
+                <td><span class="badge badge--phos">published</span></td>
+                <td class="dim">6d</td>
+                <td class="actions"><a href="javascript:void(0)">hide</a><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td>
+              </tr>
+              <tr>
+                <td><a class="phos" href="javascript:void(0)">Apple MacBook Air M3</a></td>
+                <td>priya</td>
+                <td><span class="stars">★★★★★</span></td>
+                <td class="dim">Perfect for students.</td>
+                <td><span class="badge badge--phos">published</span></td>
+                <td class="dim">12d</td>
+                <td class="actions"><a href="javascript:void(0)">hide</a><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td>
+              </tr>
+              <tr>
+                <td><a class="phos" href="javascript:void(0)">OnePlus 12</a></td>
+                <td>spam_bot</td>
+                <td><span class="stars">★<span class="off">★★★★</span></span></td>
+                <td class="dim">buy cheap stuff at example.com!!!</td>
+                <td><span class="badge badge--alert">hidden</span></td>
+                <td class="dim">1d</td>
+                <td class="actions"><a href="javascript:void(0)">publish</a><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><a href="javascript:void(0)">‹ prev</a><span class="spacer"></span><span class="label">page 1 / 2</span><span class="spacer"></span><a href="javascript:void(0)">next ›</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

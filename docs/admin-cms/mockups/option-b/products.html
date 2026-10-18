@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Products — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · products</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html" class="active">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="btn btn--sm btn--block" href="../index.html">view storefront</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / products</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content wide">
+      <div class="page-head">
+        <h1>products</h1>
+        <span class="label">137 items</span>
+        <div class="spacer"></div>
+        <a class="btn btn--phos" href="product-form.html">+ new product</a>
+      </div>
+
+      <div class="panel pad" style="margin-bottom:14px">
+        <div class="filters">
+          <div class="field" style="min-width:220px;flex:1"><span class="label">search</span>
+            <span class="prefix"><span class="p">&gt;</span><input class="input" placeholder="name, slug, brand…" /></span></div>
+          <div class="field"><span class="label">category</span>
+            <select><option>all</option><option>smartphones</option><option>laptops</option><option>televisions</option><option>headphones</option></select></div>
+          <div class="field"><span class="label">brand</span>
+            <select><option>all</option><option>apple</option><option>samsung</option><option>sony</option></select></div>
+          <div class="field"><span class="label">state</span>
+            <select><option>all</option><option>active</option><option>inactive</option><option>out of stock</option></select></div>
+          <button class="btn">apply</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th><th>name</th><th>brand</th><th>category</th>
+                <th class="num">price</th><th class="num">stock</th><th>state</th><th class="actions">actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img class="thumb" src="https://picsum.photos/seed/samsung-galaxy-s24/60/60" alt="" /></td>
+                <td><div>Samsung Galaxy S24</div><div class="dim" style="font-size:11px">samsung-galaxy-s24</div></td>
+                <td>Samsung</td><td class="dim">Smartphones</td>
+                <td class="num">79,999.00</td><td class="num">12</td>
+                <td><span class="badge badge--phos"><span class="dot"></span>active</span> <span class="badge badge--phos">featured</span></td>
+                <td class="actions"><a href="product-form.html">edit</a><a class="err" href="#">delete</a></td>
+              </tr>
+              <tr>
+                <td><img class="thumb" src="https://picsum.photos/seed/apple-macbook-air-m3/60/60" alt="" /></td>
+                <td><div>Apple MacBook Air M3</div><div class="dim" style="font-size:11px">apple-macbook-air-m3</div></td>
+                <td>Apple</td><td>Laptops</td>
+                <td class="num">104,900.00</td><td class="num">10</td>
+                <td><span class="badge badge--phos"><span class="dot"></span>active</span></td>
+                <td class="actions"><a href="product-form.html">edit</a><a href="javascript:void(0)">delete</a></td>
+              </tr>
+              <tr>
+                <td><img class="thumb" src="https://picsum.photos/seed/lg-oled-evo-c4-65/60/60" alt="" /></td>
+                <td><div>LG OLED evo C4 65"</div><div class="dim" style="font-size:11px">lg-oled-evo-c4-65</div></td>
+                <td>LG</td><td>Televisions</td>
+                <td class="num">219,990.00</td><td class="num"><span class="err">0</span></td><td><span class="badge badge--phos"><span class="dot"></span>active</span></td>
+                <td class="actions"><a href="product-form.html">edit</a><a href="javascript:void(0)">delete</a></td>
+              </tr>
+              <tr>
+                <td><img class="thumb" src="https://picsum.photos/seed/bose-quietcomfort-ultra/60/60" alt="" /></td>
+                <td><div>Bose QuietComfort Ultra</div><div class="dim" style="font-size:11px">bose-quietcomfort-ultra</div></td>
+                <td>Bose</td><td>Headphones</td>
+                <td class="num">35,900.00</td><td class="num">18</td><td><span class="badge badge--dim"><span class="dot dot--dim"></span>inactive</span></td>
+                <td class="actions"><a href="product-form.html">edit</a><a href="javascript:void(0)">delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <a href="javascript:void(0)">‹ prev</a>
+          <span class="spacer"></span>
+          <span class="label">page 1 / 7</span>
+          <span class="spacer"></span>
+          <a href="javascript:void(0)">next ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

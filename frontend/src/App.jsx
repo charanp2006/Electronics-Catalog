@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import AdminApp from './admin/AdminApp'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { WishlistProvider } from './context/WishlistContext'
@@ -24,6 +25,7 @@ export default function App() {
           <WishlistProvider>
             <CompareProvider>
               <Routes>
+                <Route path="/admin-cms/*" element={<AdminApp />} />
                 <Route element={<Layout />}>
                   <Route path="/" element={<Home />} />
                   <Route path="/products" element={<Products />} />

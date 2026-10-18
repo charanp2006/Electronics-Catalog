@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center">
+    <h1>Products</h1>
+    <a href="/admin/products/new"><button>New Product</button></a>
+</div>
+<div class="panel">
+    <table>
+        <thead>
+            <tr><th>Name</th><th>Brand</th><th>Category</th><th>Price</th><th>Stock</th><th>Active</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            {% for p in products['items'] %}
+            <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.brand.name }}</td>
+                <td>{{ p.category.name }}</td>
+                <td>₹{{ p.price }}</td>
+                <td>{{ p.stock }}</td>
+                <td>{{ 'Yes' if p.is_active else 'No' }}</td>
+                <td>
+                    <a href="/admin/products/{{ p._id }}/edit">Edit</a>
+                    <form method="post" action="/admin/products/{{ p._id }}/delete" style="display:inline" onsubmit="return confirm('Deactivate this product?')">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <button class="secondary">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

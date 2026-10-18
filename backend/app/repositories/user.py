@@ -2,10 +2,10 @@ from typing import Any, Dict, Optional
 
 from bson import ObjectId
 
-from app.db.mongodb import get_db
+from app.db.mongodb import BaseRepository, get_db
 
 
-class UserRepository:
+class UserRepository(BaseRepository):
     def __init__(self):
         self.collection = get_db()["users"]
 

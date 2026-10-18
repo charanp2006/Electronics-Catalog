@@ -6,6 +6,7 @@ pydantic-settings
 python-dotenv
 python-multipart
 email-validator
+jinja2
 bcrypt
 PyJWT
 pytest
