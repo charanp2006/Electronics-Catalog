@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="grid">
+    <div class="panel">
+        <h3>Products</h3>
+        <div>Total: {{ stats.products.total }} | Active: {{ stats.products.active }} | Low: {{ stats.products.low_stock }} | Out: {{ stats.products.out_of_stock }}</div>
+    </div>
+    <div class="panel">
+        <h3>Orders</h3>
+        <div>Total: {{ stats.orders.total }} | Revenue: ₹{{ stats.orders.revenue }}</div>
+        <div>Pending: {{ stats.orders.by_status.pending or 0 }} | Processing: {{ stats.orders.by_status.processing or 0 }} | Shipped: {{ stats.orders.by_status.shipped or 0 }} | Delivered: {{ stats.orders.by_status.delivered or 0 }} | Cancelled: {{ stats.orders.by_status.cancelled or 0 }}</div>
+    </div>
+    <div class="panel">
+        <h3>Reviews</h3>
+        <div>Total: {{ stats.reviews.total }} | Published: {{ stats.reviews.published }} | Hidden: {{ stats.reviews.hidden }}</div>
+    </div>
+    <div class="panel">
+        <h3>Catalog</h3>
+        <div>Categories: {{ stats.catalog.categories }} | Brands: {{ stats.catalog.brands }}</div>
+    </div>
+</div>
+{% endblock %}

@@ -60,7 +60,7 @@ def test_order_flow_decrements_stock(client, auth_headers, first_product):
     client.post(f"{API}/cart/add", json={"product_id": pid, "quantity": 1}, headers=auth_headers)
     order = client.post(f"{API}/orders/", json={}, headers=auth_headers)
     assert order.status_code == 201
-    assert order.json()["status"] == "placed"
+    assert order.json()["status"] == "pending"
 
     stock_after = client.get(f"{API}/products/{slug}").json()["stock"]
     assert stock_after == stock_before - 1

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Categories — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · categories</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html">products</a>
+      <a href="categories.html" class="active">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot"><a class="btn btn--sm btn--block" href="../index.html">view storefront</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / categories</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <h1>categories</h1><span class="label">4 items</span>
+        <div class="spacer"></div>
+        <button class="btn btn--phos">+ new category</button>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px">
+        <div class="pad" style="border-bottom:1px solid var(--line)"><span class="label">[new / edit] category</span></div>
+        <div class="pad">
+          <div class="grid grid-3">
+            <div class="field"><span class="label">name *</span><input class="input" value="Smartphones" /></div>
+            <div class="field"><span class="label">slug</span><span class="prefix"><span class="p">/</span><input class="input" value="smartphones" /></span></div>
+            <div class="field"><span class="label">icon (token)</span><input class="input" value="smartphone" /></div>
+            <div class="field" style="grid-column:1 / -1"><span class="label">description</span><input class="input" value="Mobile phones & accessories" /></div>
+          </div>
+          <div class="row"><button class="btn btn--phos btn--sm">save</button><button class="btn btn--sm">cancel</button></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>name</th><th>slug</th><th>description</th><th class="num">products</th><th class="actions">actions</th></tr></thead>
+            <tbody>
+              <tr><td>Smartphones</td><td class="mono dim">smartphones</td><td class="dim">Mobile phones & accessories</td><td class="num">3</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td>Laptops</td><td class="mono dim">laptops</td><td class="dim">Laptops & notebooks</td><td class="num">3</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td>Televisions</td><td class="mono dim">televisions</td><td class="dim">Smart TVs & displays</td><td class="num">3</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td>Headphones</td><td class="mono dim">headphones</td><td class="dim">Headphones & earbuds</td><td class="num">3</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="pager"><span class="dim" style="font-size:11px">deleting a category with products is blocked (409)</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

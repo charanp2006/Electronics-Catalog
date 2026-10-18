@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orders — Option A</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option A · orders</div>
+
+<header class="topbar">
+  <div class="brand-block"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+  <nav>
+    <a href="dashboard.html">dashboard</a>
+    <a href="products.html">products</a>
+    <a href="categories.html">categories</a>
+    <a href="brands.html">brands</a>
+    <a href="orders.html" class="active">orders</a>
+    <a href="reviews.html">reviews</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge badge--dim">owner</span>
+  <a class="btn btn--sm" href="login.html">logout</a>
+</header>
+
+<main class="content wide">
+  <div class="page-head">
+    <h1>orders</h1><span class="label">4 total · 2 pending</span>
+    <div class="spacer"></div>
+    <span class="label">GET /admin/orders?status=</span>
+  </div>
+
+  <div class="tabs" style="margin-bottom:14px">
+    <a class="active" href="javascript:void(0)">all</a>
+    <a href="javascript:void(0)">pending</a>
+    <a href="javascript:void(0)">processing</a>
+    <a href="javascript:void(0)">shipped</a>
+    <a href="javascript:void(0)">delivered</a>
+    <a href="javascript:void(0)">cancelled</a>
+  </div>
+
+  <form class="filters panel pad" method="get" action="/admin/orders" style="margin-bottom:14px">
+    <div class="field" style="min-width:220px;flex:1"><span class="label">search</span>
+      <span class="prefix"><span class="p">&gt;</span><input class="input" name="q" placeholder="order id or customer…" /></span></div>
+    <button class="btn">search</button>
+  </form>
+
+  <div class="panel">
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>order</th><th>customer</th><th class="num">items</th><th class="num">total</th><th>status</th><th>placed</th><th class="actions"></th></tr></thead>
+        <tbody>
+          <tr><td class="mono">#a1f3…9c</td><td>demo <span class="dim">· demo@example.com</span></td><td class="num">1</td><td class="num">74,999.00</td><td><span class="badge badge--dim">pending</span></td><td class="dim">2h ago</td><td class="actions"><a href="order-detail.html">view</a></td></tr>
+          <tr><td class="mono">#b2e7…41</td><td>priya <span class="dim">· priya@example.com</span></td><td class="num">1</td><td class="num">104,900.00</td><td><span class="badge badge--sig">processing</span></td><td class="dim">yesterday</td><td class="actions"><a href="order-detail.html">view</a></td></tr>
+          <tr><td class="mono">#c9d1…08</td><td>sam <span class="dim">· sam@example.com</span></td><td class="num">1</td><td class="num">29,990.00</td><td><span class="badge badge--phos">shipped</span></td><td class="dim">3d ago</td><td class="actions"><a href="order-detail.html">view</a></td></tr>
+          <tr><td class="mono">#d4aa…77</td><td>demo <span class="dim">· demo@example.com</span></td><td class="num">1</td><td class="num">29,990.00</td><td><span class="badge badge--phos">delivered</span></td><td class="dim">5d ago</td><td class="actions"><a href="order-detail.html">view</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pager"><a href="javascript:void(0)">‹ prev</a><span class="spacer"></span><span class="label">page 1 / 1</span><span class="spacer"></span><a href="javascript:void(0)">next ›</a></div>
+  </div>
+</main>
+</body>
+</html>

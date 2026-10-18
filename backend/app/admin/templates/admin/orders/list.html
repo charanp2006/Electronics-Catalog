@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Orders</h1>
+<div class="panel">
+    <table>
+        <thead><tr><th>ID</th><th>User</th><th>Total</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+        <tbody>
+            {% for o in orders['items'] %}
+            <tr>
+                <td>{{ o.id[:8] }}...</td>
+                <td>{{ o.user.email if o.user else o.user_id }}</td>
+                <td>₹{{ o.total }}</td>
+                <td>{{ o.status }}</td>
+                <td>{{ o.created_at }}</td>
+                <td><a href="/admin/orders/{{ o.id }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

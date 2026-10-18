@@ -1,8 +1,15 @@
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
+from uuid import uuid4
+
+from bson import ObjectId
 
 from app.db.mongodb import BaseRepository, get_db
 from app.utils.serialization import serialize
+
+
+def _now() -> datetime:
+    return datetime.now(timezone.utc)
 
 
 class ProductRepository(BaseRepository):
@@ -10,6 +17,7 @@ class ProductRepository(BaseRepository):
         self.db = get_db()
         self.collection = self.db["products"]
 
+    # ------------------------------------------------------------------ store
     def list_products(
         self,
         q: Optional[str] = None,
@@ -94,6 +102,9 @@ class ProductRepository(BaseRepository):
         doc = self.collection.find_one({"slug": slug})
         if not doc:
             return None
+        doc["reviews"] = [
+            r for r in doc.get("reviews", []) if r.get("status", "published") == "published"
+        ]
         return serialize(doc)
 
     def add_review(
@@ -102,41 +113,29 @@ class ProductRepository(BaseRepository):
         doc = self.collection.find_one({"slug": slug})
         if not doc:
             return None
-        reviews = doc.get("reviews", [])
-        reviews.append(
-            {
-                "user_id": user["_id"],
-                "username": user.get("username", "user"),
-                "rating": rating,
-                "comment": comment,
-                "created_at": datetime.now(timezone.utc),
-            }
-        )
-        average = round(sum(r["rating"] for r in reviews) / len(reviews), 2)
+        review = {
+            "review_id": uuid4().hex,
+            "user_id": str(user.get("_id")),
+            "username": user.get("username"),
+            "rating": rating,
+            "comment": comment,
+            "status": "published",
+            "created_at": _now(),
+            "updated_at": _now(),
+        }
+        reviews = doc.get("reviews", []) + [review]
         self.collection.update_one(
-            {"slug": slug},
-            {
-                "$set": {
-                    "reviews": reviews,
-                    "average_rating": average,
-                    "total_reviews": len(reviews),
-                    "updated_at": datetime.now(timezone.utc),
-                }
-            },
+            {"_id": doc["_id"]},
+            {"$set": {"reviews": reviews, "updated_at": _now()}},
         )
-        return self.get_by_slug(slug)
-
-    def get_by_id(self, product_id: str) -> Optional[Dict[str, Any]]:
-        from bson import ObjectId
-
-        if not ObjectId.is_valid(product_id):
-            return None
-        doc = self.collection.find_one({"_id": ObjectId(product_id)})
-        return serialize(doc) if doc else None
+        self.recompute_rating(str(doc["_id"]))
+        return self.get_by_slug(doc["slug"])
 
     def featured(self, limit: int = 8) -> list:
         cursor = (
-            self.collection.find({"is_active": True, "is_featured": True}, {"reviews": 0, "price_history": 0})
+            self.collection.find(
+                {"is_active": True, "is_featured": True}, {"reviews": 0, "price_history": 0}
+            )
             .sort("average_rating", -1)
             .limit(limit)
         )
@@ -148,3 +147,94 @@ class ProductRepository(BaseRepository):
             {"reviews": 0, "price_history": 0},
         ).limit(limit)
         return serialize(list(cursor))
+
+    # ------------------------------------------------------------------ admin
+    def get_by_id(self, product_id: str) -> Optional[Dict[str, Any]]:
+        if not ObjectId.is_valid(product_id):
+            return None
+        doc = self.collection.find_one({"_id": ObjectId(product_id)})
+        return serialize(doc) if doc else None
+
+    def list_admin(
+        self,
+        q: Optional[str] = None,
+        category: Optional[str] = None,
+        brand: Optional[str] = None,
+        is_active: Optional[bool] = None,
+        is_featured: Optional[bool] = None,
+        stock: Optional[str] = None,
+        sort: str = "newest",
+        page: int = 1,
+        limit: int = 20,
+    ) -> Dict[str, Any]:
+        query: Dict[str, Any] = {}
+        if q:
+            regex = {"$regex": q, "$options": "i"}
+            query["$or"] = [
+                {"name": regex},
+                {"slug": regex},
+                {"brand.name": regex},
+                {"category.name": regex},
+            ]
+        if category:
+            query["category.slug"] = category
+        if brand:
+            query["brand.slug"] = brand
+        if is_active is not None:
+            query["is_active"] = is_active
+        if is_featured is not None:
+            query["is_featured"] = is_featured
+        if stock == "out":
+            query["stock"] = {"$lte": 0}
+        elif stock == "low":
+            query["stock"] = {"$gt": 0, "$lte": 5}
+
+        sort_map = {
+            "newest": [("created_at", -1)],
+            "name": [("name", 1)],
+            "price": [("price", -1)],
+            "stock": [("stock", 1)],
+        }
+        sort_spec = sort_map.get(sort, sort_map["newest"])
+
+        total = self.collection.count_documents(query)
+        cursor = (
+            self.collection.find(query, {"reviews": 0, "price_history": 0})
+            .sort(sort_spec)
+            .skip((page - 1) * limit)
+            .limit(limit)
+        )
+        return {"items": serialize(list(cursor)), "total": total, "page": page, "limit": limit}
+
+    def get_by_id_raw(self, product_id: str) -> Optional[Dict[str, Any]]:
+        if not ObjectId.is_valid(product_id):
+            return None
+        return self.collection.find_one({"_id": ObjectId(product_id)})
+
+    def create(self, doc: Dict[str, Any]):
+        return self.collection.insert_one(doc)
+
+    def update(self, product_id: str, updates: Dict[str, Any]) -> int:
+        if not ObjectId.is_valid(product_id):
+            return 0
+        result = self.collection.update_one({"_id": ObjectId(product_id)}, {"$set": updates})
+        return result.matched_count
+
+    def delete(self, product_id: str) -> int:
+        if not ObjectId.is_valid(product_id):
+            return 0
+        result = self.collection.delete_one({"_id": ObjectId(product_id)})
+        return result.deleted_count
+
+    def recompute_rating(self, product_id: str) -> None:
+        if not ObjectId.is_valid(product_id):
+            return
+        doc = self.collection.find_one({"_id": ObjectId(product_id)}, {"reviews": 1})
+        if not doc:
+            return
+        published = [r for r in doc.get("reviews", []) if r.get("status", "published") == "published"]
+        avg = round(sum(r.get("rating", 0) for r in published) / len(published), 2) if published else 0
+        self.collection.update_one(
+            {"_id": ObjectId(product_id)},
+            {"$set": {"average_rating": avg, "total_reviews": len(published)}},
+        )

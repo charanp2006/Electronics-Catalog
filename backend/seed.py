@@ -8,7 +8,9 @@ Drops and recreates the core collections, inserts categories, brands,
 products (with embedded specs/reviews/price history), a sample user and
 required indexes.
 """
+import os
 from datetime import datetime, timedelta, timezone
+from uuid import uuid4
 
 import bcrypt
 from dotenv import load_dotenv
@@ -49,11 +51,11 @@ db = client[settings.MONGODB_DB_NAME]
 # ---------------------------------------------------------------------------
 # Reset
 # ---------------------------------------------------------------------------
-for coll in ["products", "brands", "categories", "users", "orders", "reviews", "carts"]:
+for coll in ["products", "brands", "categories", "users", "orders", "reviews", "carts", "audit_logs"]:
     db[coll].drop()
 
 # ---------------------------------------------------------------------------
-# Demo user
+# Demo customer
 # ---------------------------------------------------------------------------
 demo_user = {
     "username": "demo",
@@ -61,9 +63,30 @@ demo_user = {
     "email": "demo@example.com",
     "password": hash_password("demo12345"),
     "is_active": True,
+    "is_admin": False,
+    "role": "customer",
     "created_at": now(),
 }
 user_id = db.users.insert_one(demo_user).inserted_id
+
+# ---------------------------------------------------------------------------
+# Demo admin (credentials overridable via env)
+# ---------------------------------------------------------------------------
+admin_email = os.getenv("ADMIN_EMAIL")
+admin_password = os.getenv("ADMIN_PASSWORD")
+if not admin_email or not admin_password:
+    raise RuntimeError("ADMIN_EMAIL and ADMIN_PASSWORD must be set in environment")
+admin_user = {
+    "username": "admin",
+    "name": "Administrator",
+    "email": admin_email.lower(),
+    "password": hash_password(admin_password),
+    "is_active": True,
+    "is_admin": True,
+    "role": "admin",
+    "created_at": now(),
+}
+admin_id = db.users.insert_one(admin_user).inserted_id
 
 # ---------------------------------------------------------------------------
 # Categories
@@ -99,13 +122,17 @@ for b in brands:
     brand_ids[b["slug"]] = db.brands.insert_one(b).inserted_id
 
 
-def review(rating: int, comment: str, age_days: int, username: str = "demo") -> dict:
+def review(rating: int, comment: str, age_days: int, username: str = "demo",
+           status: str = "published") -> dict:
     return {
+        "review_id": uuid4().hex,
         "user_id": str(user_id),
         "username": username,
         "rating": rating,
         "comment": comment,
+        "status": status,
         "created_at": days_ago(age_days),
+        "updated_at": days_ago(age_days),
     }
 
 
@@ -201,7 +228,7 @@ products = [
             {"key": "RAM", "value": "16 GB LPDDR5"},
             {"key": "Storage", "value": "512 GB SSD"},
         ],
-        "reviews": [review(4, "Beautiful screen, gets a little warm.", 22)],
+        "reviews": [review(4, "Beautiful screen, gets a little warm.", 22, status="hidden")],
         "price_history": [],
         "is_featured": False,
     },
@@ -327,8 +354,11 @@ products = [
 
 for p in products:
     reviews = p.get("reviews", [])
-    p["average_rating"] = round(sum(r["rating"] for r in reviews) / len(reviews), 2) if reviews else 0.0
-    p["total_reviews"] = len(reviews)
+    published = [r for r in reviews if r.get("status", "published") == "published"]
+    p["average_rating"] = (
+        round(sum(r["rating"] for r in published) / len(published), 2) if published else 0.0
+    )
+    p["total_reviews"] = len(published)
     p["images"] = img(p["slug"])
     p["image"] = image_for(p["slug"])
     p["is_active"] = True
@@ -336,6 +366,47 @@ for p in products:
     p["updated_at"] = now()
 
 db.products.insert_many(products)
+
+# ---------------------------------------------------------------------------
+# Sample orders
+# ---------------------------------------------------------------------------
+def make_order(items_spec, status: str, age_days: int) -> dict:
+    items = []
+    subtotal = 0.0
+    for product, qty in items_spec:
+        price = product.get("discount_price") or product["price"]
+        subtotal += price * qty
+        items.append(
+            {
+                "product_id": str(product["_id"]),
+                "name": product["name"],
+                "price": price,
+                "quantity": qty,
+                "image": product["image"],
+            }
+        )
+    discount = round(subtotal * 0.1, 2) if subtotal > 100000 else 0.0
+    created = days_ago(age_days)
+    return {
+        "user_id": str(user_id),
+        "items": items,
+        "subtotal": subtotal,
+        "discount": discount,
+        "total": round(subtotal - discount, 2),
+        "status": status,
+        "status_history": [{"status": status, "at": created, "by": "system"}],
+        "created_at": created,
+        "updated_at": created,
+    }
+
+
+db.orders.insert_many(
+    [
+        make_order([(products[0], 1)], "pending", 2),
+        make_order([(products[9], 2), (products[11], 1)], "processing", 6),
+        make_order([(products[3], 1)], "delivered", 20),
+    ]
+)
 
 # ---------------------------------------------------------------------------
 # Indexes
@@ -348,8 +419,13 @@ db.products.create_index("price")
 db.products.create_index("is_active")
 db.users.create_index("email", unique=True)
 db.users.create_index("username", unique=True)
+db.users.create_index("is_admin")
 db.brands.create_index("slug", unique=True)
 db.categories.create_index("slug", unique=True)
+db.orders.create_index("user_id")
+db.orders.create_index("status")
+db.orders.create_index("created_at")
+db.audit_logs.create_index("at")
 
 print("Seeded successfully")
 print(
@@ -357,5 +433,7 @@ print(
     "categories:", db.categories.count_documents({}),
     "brands:", db.brands.count_documents({}),
     "users:", db.users.count_documents({}),
+    "orders:", db.orders.count_documents({}),
 )
+print(f"Admin login: {admin_email} / {admin_password}")
 client.close()

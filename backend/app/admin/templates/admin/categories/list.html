@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Categories</h1>
+<div class="grid">
+    <div class="panel">
+        <h3>{{ 'Edit Category' if edit else 'New Category' }}</h3>
+        <form method="post" action="{{ '/admin/categories/' ~ edit._id ~ '/edit' if edit else '/admin/categories/new' }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label>Name</label>
+            <input name="name" value="{{ edit.name if edit else '' }}" required>
+            <label>Slug</label>
+            <input name="slug" value="{{ edit.slug if edit else '' }}">
+            <div class="row" style="margin-top:12px">
+                <button style="margin-top:12px">{{ 'Save' if edit else 'Create' }}</button>
+                {% if edit %}<a href="/admin/categories"><button type="button" class="secondary">Cancel</button></a>{% endif %}
+            </div>
+        </form>
+    </div>
+    <div class="panel">
+        <table>
+            <thead><tr><th>Name</th><th>Slug</th><th>Products</th><th>Actions</th></tr></thead>
+            <tbody>
+                {% for c in categories %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.slug }}</td>
+                    <td>{{ c.product_count }}</td>
+                    <td>
+                        <a href="/admin/categories?edit={{ c._id }}">Edit</a>
+                        <form method="post" action="/admin/categories/{{ c._id }}/delete" style="display:inline" onsubmit="return confirm('Delete this category?')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <button class="secondary">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

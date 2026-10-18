@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Brands</h1>
+<div class="grid">
+    <div class="panel">
+        <h3>{{ 'Edit Brand' if edit else 'New Brand' }}</h3>
+        <form method="post" action="{{ '/admin/brands/' ~ edit._id ~ '/edit' if edit else '/admin/brands/new' }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label>Name</label>
+            <input name="name" value="{{ edit.name if edit else '' }}" required>
+            <label>Slug</label>
+            <input name="slug" value="{{ edit.slug if edit else '' }}">
+            <label>Country</label>
+            <input name="country" value="{{ edit.country if edit else '' }}">
+            <label>Logo URL</label>
+            <input name="logo" value="{{ edit.logo if edit else '' }}">
+            <div class="row" style="margin-top:12px">
+                <button style="margin-top:12px">{{ 'Save' if edit else 'Create' }}</button>
+                {% if edit %}<a href="/admin/brands"><button type="button" class="secondary">Cancel</button></a>{% endif %}
+            </div>
+        </form>
+    </div>
+    <div class="panel">
+        <table>
+            <thead><tr><th>Name</th><th>Slug</th><th>Country</th><th>Products</th><th>Actions</th></tr></thead>
+            <tbody>
+                {% for b in brands %}
+                <tr>
+                    <td>{{ b.name }}</td>
+                    <td>{{ b.slug }}</td>
+                    <td>{{ b.country }}</td>
+                    <td>{{ b.product_count }}</td>
+                    <td>
+                        <a href="/admin/brands?edit={{ b._id }}">Edit</a>
+                        <form method="post" action="/admin/brands/{{ b._id }}/delete" style="display:inline" onsubmit="return confirm('Delete this brand?')">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <button class="secondary">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

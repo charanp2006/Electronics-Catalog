@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Login — Option A</title>
+<link rel="stylesheet" href="../mockup.css" />
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; }
+  .login { width: 380px; max-width: 92vw; position: relative; z-index: 2; }
+  .login .head { display: flex; align-items: baseline; gap: 8px; justify-content: center; margin-bottom: 4px; }
+  .login .logo { font-family: 'VT323', monospace; font-size: 40px; color: var(--phos); }
+</style>
+</head>
+<body>
+<div class="mock-ribbon">mock · option A · login</div>
+
+<div class="login">
+  <div class="head">
+    <span class="logo">electrohub</span>
+    <span class="badge badge--phos">admin</span>
+  </div>
+  <p class="label" style="text-align:center;margin:0 0 18px">[01] server-rendered control panel</p>
+
+  <!-- POST /admin/login  ->  Set-Cookie: admin_session=...; HttpOnly; SameSite=Lax; 303 /admin/dashboard -->
+  <form class="panel frame pad-lg" method="post" action="/admin/login" onsubmit="return false">
+    <input type="hidden" name="csrf_token" value="7f9c1b…a4e2" />
+    <div class="field">
+      <label class="label" for="email">email</label>
+      <span class="prefix"><span class="p">&gt;</span><input id="email" class="input" name="email" type="email" value="owner@example.com" /></span>
+    </div>
+    <div class="field">
+      <label class="label" for="password">password</label>
+      <span class="prefix"><span class="p">&gt;</span><input id="password" class="input" name="password" type="password" value="secret-admin" /></span>
+    </div>
+    <button class="btn btn--phos btn--block" type="submit">authenticate →</button>
+    <p class="help" style="margin:14px 0 0;text-align:center">
+      on success sets <span class="mono phos">admin_session</span> cookie (HttpOnly, SameSite=Lax)
+    </p>
+  </form>
+
+  <p class="help" style="text-align:center;margin-top:16px">admin only · <a class="phos" href="../index.html">← mockups</a></p>
+</div>
+</body>
+</html>

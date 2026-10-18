@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Product Form — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · product form</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html" class="active">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="btn btn--sm btn--block" href="../index.html">view storefront</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / products / edit</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <h1>product</h1>
+        <span class="badge badge--dim">edit · samsung-galaxy-s24</span>
+      </div>
+
+      <form onsubmit="return false">
+        <div class="grid grid-2" style="align-items:start">
+          <!-- left column -->
+          <div>
+            <div class="panel pad-lg" style="margin-bottom:14px">
+              <p class="label" style="margin:0 0 14px">[01] details</p>
+              <div class="field"><span class="label">name *</span><input class="input" value="Samsung Galaxy S24" /></div>
+              <div class="field"><span class="label">slug</span>
+                <span class="prefix"><span class="p">/</span><input class="input" value="samsung-galaxy-s24" /></span>
+                <span class="help">leave blank to auto-generate from name</span></div>
+              <div class="field"><span class="label">description</span>
+                <textarea>Compact flagship with a 6.2-inch Dynamic AMOLED 2X display, Snapdragon 8 Gen 3 and Galaxy AI features.</textarea></div>
+            </div>
+
+            <div class="panel pad-lg">
+              <p class="label" style="margin:0 0 14px">[02] specifications</p>
+              <div class="field"><span class="label">row 1</span>
+                <div class="row"><input class="input" style="flex:1" value="Display" /><input class="input" style="flex:2" value="6.2-inch Dynamic AMOLED 2X" /><button class="btn btn--danger btn--sm" type="button">×</button></div></div>
+              <div class="field"><span class="label">row 2</span>
+                <div class="row"><input class="input" style="flex:1" value="Processor" /><input class="input" style="flex:2" value="Snapdragon 8 Gen 3" /><button class="btn btn--danger btn--sm" type="button">×</button></div></div>
+              <button class="btn btn--sm" type="button">+ add row</button>
+            </div>
+          </div>
+
+          <!-- right column -->
+          <div>
+            <div class="panel pad-lg" style="margin-bottom:14px">
+              <p class="label" style="margin:0 0 14px">[03] classification</p>
+              <div class="field"><span class="label">brand *</span>
+                <select><option>Samsung</option><option>Apple</option><option>LG</option><option>Bose</option></select></div>
+              <div class="field"><span class="label">category *</span>
+                <select><option>Smartphones</option><option>Laptops</option><option>Televisions</option><option>Headphones</option></select></div>
+              <label class="checkrow"><input type="checkbox" checked /> active (visible on storefront)</label>
+              <label class="checkrow" style="margin-top:8px"><input type="checkbox" checked /> featured</label>
+            </div>
+
+            <div class="panel pad-lg" style="margin-bottom:14px">
+              <p class="label" style="margin:0 0 14px">[03] pricing &amp; stock</p>
+              <div class="grid grid-2">
+                <div class="field"><span class="label">price *</span><span class="prefix"><span class="p">₹</span><input class="input" value="79999" /></span></div>
+                <div class="field"><span class="label">discount</span><span class="prefix"><span class="p">₹</span><input class="input" value="74999" /></span></div>
+              </div>
+              <div class="field"><span class="label">stock *</span><input class="input" value="12" /></div>
+            </div>
+
+            <div class="panel pad-lg">
+              <p class="label" style="margin:0 0 10px">[03] images (urls)</p>
+              <div class="field">
+                <textarea>https://picsum.photos/seed/samsung-galaxy-s24-1/600/600, https://picsum.photos/seed/samsung-galaxy-s24-2/600/600, https://picsum.photos/seed/samsung-galaxy-s24-3/600/600</textarea>
+                <span class="help">comma-separated image URLs · first image = primary</span>
+              </div>
+              <div class="thumbs">
+                <img class="thumb-lg" src="https://picsum.photos/seed/samsung-galaxy-s24-1/120/120" alt="" />
+                <img class="thumb-lg" src="https://picsum.photos/seed/samsung-galaxy-s24-2/120/120" alt="" />
+                <img class="thumb-lg" src="https://picsum.photos/seed/samsung-galaxy-s24-3/120/120" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:18px">
+          <button class="btn btn--phos" type="submit">save product</button>
+          <a class="btn" href="products.html">cancel</a>
+          <div class="spacer"></div>
+          <button class="btn btn--danger" type="button">delete product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

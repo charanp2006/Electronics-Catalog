@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Order #{{ order.id[:8] }}</h1>
+<div class="panel">
+    <div>Status: <strong>{{ order.status }}</strong></div>
+    {% if order.user %}
+    <div style="margin-top:4px;color:var(--dim)">Customer: {{ order.user.email }}{% if order.user.username %} ({{ order.user.username }}){% endif %}</div>
+    {% endif %}
+    <div style="margin-top:4px;color:var(--dim)">Placed: {{ order.created_at }}</div>
+    {% if allowed %}
+    <form method="post" action="/admin/orders/{{ order.id }}/status" style="margin-top:12px">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Move to</label>
+        <select name="status">
+            {% for s in allowed %}
+            <option value="{{ s }}">{{ s }}</option>
+            {% endfor %}
+        </select>
+        <button style="margin-top:8px">Update</button>
+    </form>
+    {% else %}
+    <div style="margin-top:12px;color:var(--dim)">No further status changes possible.</div>
+    {% endif %}
+    <h3 style="margin-top:16px">Items</h3>
+    <table>
+        <thead><tr><th>Product</th><th>Qty</th><th>Price</th></tr></thead>
+        <tbody>
+            {% for i in order['items'] %}
+            <tr><td>{{ i.name }}</td><td>{{ i.quantity }}</td><td>₹{{ i.price }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="margin-top:8px">
+        Subtotal: ₹{{ order.subtotal }}
+        {% if order.discount %} | Discount: −₹{{ order.discount }}{% endif %}
+        | <strong>Total: ₹{{ order.total }}</strong>
+    </div>
+    {% if order.status_history %}
+    <h3 style="margin-top:16px">History</h3>
+    <table>
+        <thead><tr><th>Status</th><th>At</th><th>By</th></tr></thead>
+        <tbody>
+            {% for h in order.status_history %}
+            <tr><td>{{ h.status }}</td><td>{{ h.at }}</td><td>{{ h.by }}</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

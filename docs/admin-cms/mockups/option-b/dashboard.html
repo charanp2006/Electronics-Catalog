@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dashboard — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · dashboard</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html" class="active">dashboard</a>
+      <a href="products.html">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot">
+      <a class="btn btn--sm btn--block" href="../index.html">view storefront</a>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / dashboard</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <h1>overview</h1>
+        <div class="spacer"></div>
+        <span class="label">live · <span class="phos">connected</span></span>
+      </div>
+
+      <div class="grid grid-4" style="margin-bottom:22px">
+        <div class="panel frame pad">
+          <div class="stat"><span class="label">products</span><span class="v">12</span><span class="sub">12 active · <span class="err">1 out of stock</span></span></div>
+        </div>
+        <div class="panel frame pad">
+          <div class="stat"><span class="label">orders</span><span class="v sig">4</span><span class="sub">2 pending · 1 shipped</span></div>
+        </div>
+        <div class="panel frame pad">
+          <div class="stat"><span class="label">reviews</span><span class="v ink">15</span><span class="sub"><span class="err">1 hidden</span></span></div>
+        </div>
+        <div class="panel frame pad">
+          <div class="stat"><span class="label">catalog</span><span class="v">4</span><span class="sub">categories · 8 brands</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="pad" style="border-bottom:1px solid var(--line)">
+          <span class="label">recent orders</span>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>order</th><th>customer</th><th class="num">total</th><th>status</th><th>when</th><th class="actions"></th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="mono">#a1f3…9c</td><td>demo</td><td class="num">74,999.00</td>
+                <td><span class="badge badge--dim">pending</span></td><td class="dim">2h ago</td>
+                <td class="actions"><a href="order-detail.html">view</a></td>
+              </tr>
+              <tr>
+                <td class="mono">#b2e7…41</td><td>priya</td><td class="num">104,900.00</td>
+                <td><span class="badge badge--sig">processing</span></td><td class="dim">yesterday</td>
+                <td class="actions"><a href="order-detail.html">view</a></td>
+              </tr>
+              <tr>
+                <td class="mono">#c9d1…08</td><td>sam</td><td class="num">29,990.00</td>
+                <td><span class="badge badge--phos">shipped</span></td><td class="dim">3d ago</td>
+                <td class="actions"><a href="order-detail.html">view</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

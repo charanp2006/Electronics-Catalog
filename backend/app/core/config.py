@@ -13,6 +13,13 @@ class Settings(BaseSettings):
     SECRET_KEY: str = "electrohub-dev-secret-key-change-in-production-please"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440
 
+    # Admin CMS
+    ADMIN_SESSION_COOKIE: str = "admin_session"
+    ADMIN_CSRF_COOKIE: str = "admin_csrf"
+    ADMIN_COOKIE_SECURE: bool = False
+    ADMIN_LOGIN_RATE_LIMIT: int = 10
+    ADMIN_LOGIN_RATE_WINDOW_MINUTES: int = 15
+
     model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     @property

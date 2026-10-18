@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ElectroHub Admin</title>
+    <link rel="stylesheet" href="/admin/static/admin.css">
+</head>
+<body>
+    <header>
+        <div><strong>ELECTROHUB</strong> / ADMIN</div>
+        {% if admin %}
+        <nav>
+            <a href="/admin" {% if request.url.path in ('/admin', '/admin/') %}class="active"{% endif %}>Dashboard</a>
+            <a href="/admin/products" {% if '/products' in request.url.path %}class="active"{% endif %}>Products</a>
+            <a href="/admin/categories" {% if '/categories' in request.url.path %}class="active"{% endif %}>Categories</a>
+            <a href="/admin/brands" {% if '/brands' in request.url.path %}class="active"{% endif %}>Brands</a>
+            <a href="/admin/orders" {% if '/orders' in request.url.path %}class="active"{% endif %}>Orders</a>
+            <a href="/admin/reviews" {% if '/reviews' in request.url.path %}class="active"{% endif %}>Reviews</a>
+        </nav>
+        <div style="margin-left:auto;color:var(--dim);display:flex;gap:16px;align-items:center">
+            <span>{{ admin.email }}</span>
+            <a href="/admin/logout">Logout</a>
+        </div>
+        {% endif %}
+    </header>
+    <main>
+        {% set msg_code = request.query_params.get('msg') %}
+        {% set flash = {
+            'created': 'Created successfully.',
+            'updated': 'Saved successfully.',
+            'deleted': 'Deleted.',
+            'logged_out': 'You have been logged out.'
+        } %}
+        {% if msg_code %}<div class="msg">{{ flash.get(msg_code, msg_code) }}</div>{% endif %}
+        {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

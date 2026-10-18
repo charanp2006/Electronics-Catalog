@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Products — Option A</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option A · products</div>
+
+<header class="topbar">
+  <div class="brand-block"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+  <nav>
+    <a href="dashboard.html">dashboard</a>
+    <a href="products.html" class="active">products</a>
+    <a href="categories.html">categories</a>
+    <a href="brands.html">brands</a>
+    <a href="orders.html">orders</a>
+    <a href="reviews.html">reviews</a>
+  </nav>
+  <div class="spacer"></div>
+  <span class="badge badge--dim">owner</span>
+  <a class="btn btn--sm" href="login.html">logout</a>
+</header>
+
+<main class="content wide">
+  <div class="page-head">
+    <h1>products</h1><span class="label">137 items</span>
+    <div class="spacer"></div>
+    <a class="btn btn--phos" href="product-form.html">+ new product</a>
+  </div>
+
+  <!-- GET /admin/products?q=&category=&brand=&page= -->
+  <form class="filters panel pad" method="get" action="/admin/products" style="margin-bottom:14px">
+    <div class="field" style="min-width:220px;flex:1"><span class="label">search</span>
+      <span class="prefix"><span class="p">&gt;</span><input class="input" name="q" placeholder="name, slug, brand…" /></span></div>
+    <div class="field"><span class="label">category</span>
+      <select name="category"><option value="">all</option><option>smartphones</option><option>laptops</option><option>televisions</option><option>headphones</option></select></div>
+    <div class="field"><span class="label">brand</span>
+      <select name="brand"><option value="">all</option><option>apple</option><option>samsung</option><option>sony</option></select></div>
+    <button class="btn" type="submit">apply</button>
+  </form>
+
+  <div class="panel">
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th></th><th>name</th><th>brand</th><th>category</th><th class="num">price</th><th class="num">stock</th><th>state</th><th class="actions">actions</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><img class="thumb" src="https://picsum.photos/seed/samsung-galaxy-s24/60/60" alt="" /></td>
+            <td>Samsung Galaxy S24<div class="dim mono" style="font-size:11px">samsung-galaxy-s24</div></td>
+            <td>Samsung</td><td class="dim">Smartphones</td><td class="num">79,999.00</td><td class="num">12</td>
+            <td><span class="badge badge--phos"><span class="dot"></span>active</span></td>
+            <td class="actions">
+              <a href="product-form.html">edit</a>
+              <!-- POST /admin/products/{id}/delete + csrf -->
+              <form method="post" action="/admin/products/x/delete" style="display:inline" onsubmit="return false">
+                <input type="hidden" name="csrf_token" value="7f9c1b…a4e2" />
+                <button class="btn btn--danger btn--sm" type="submit">delete</button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td><img class="thumb" src="https://picsum.photos/seed/apple-macbook-air-m3/60/60" alt="" /></td>
+            <td>Apple MacBook Air M3<div class="dim mono" style="font-size:11px">apple-macbook-air-m3</div></td>
+            <td>Apple</td><td class="dim">Laptops</td><td class="num">104,900.00</td><td class="num">10</td>
+            <td><span class="badge badge--phos"><span class="dot"></span>active</span></td>
+            <td class="actions"><a href="product-form.html">edit</a>
+              <form method="post" action="/admin/products/x/delete" style="display:inline" onsubmit="return false"><input type="hidden" name="csrf_token" value="7f9c1b…a4e2" /><button class="btn btn--danger btn--sm" type="submit">delete</button></form></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="pager"><a href="javascript:void(0)">‹ prev</a><span class="spacer"></span><span class="label">page 1 / 7</span><span class="spacer"></span><a href="javascript:void(0)">next ›</a></div>
+  </div>
+</main>
+</body>
+</html>

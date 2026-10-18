@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brands — Option B</title>
+<link rel="stylesheet" href="../mockup.css" />
+</head>
+<body>
+<div class="mock-ribbon">mock · option B · brands</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">electrohub</span><span class="badge badge--phos">admin</span></div>
+    <nav>
+      <span class="navlabel label">manage</span>
+      <a href="dashboard.html">dashboard</a>
+      <a href="products.html">products</a>
+      <a href="categories.html">categories</a>
+      <a href="brands.html" class="active">brands</a>
+      <a href="orders.html">orders</a>
+      <a href="reviews.html">reviews</a>
+    </nav>
+    <div class="sidebar-foot"><a class="btn btn--sm btn--block" href="../index.html">view storefront</a></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="label">admin / brands</span>
+      <div class="spacer"></div>
+      <span class="badge badge--dim">owner</span>
+      <a class="btn btn--sm" href="login.html">logout</a>
+    </header>
+
+    <div class="content">
+      <div class="page-head">
+        <h1>brands</h1><span class="label">8 items</span>
+        <div class="spacer"></div>
+        <button class="btn btn--phos">+ new brand</button>
+      </div>
+
+      <div class="panel" style="margin-bottom:16px">
+        <div class="pad" style="border-bottom:1px solid var(--line)"><span class="label">[new / edit] brand</span></div>
+        <div class="pad">
+          <div class="grid grid-2" style="grid-template-columns:1fr 1fr 2fr">
+            <div class="field"><span class="label">name *</span><input class="input" value="Apple" /></div>
+            <div class="field"><span class="label">slug</span><span class="prefix"><span class="p">/</span><input class="input" value="apple" /></span></div>
+            <div class="field"><span class="label">country</span><input class="input" value="USA" /></div>
+            <div class="field" style="grid-column:1 / -1"><span class="label">logo url</span><input class="input" value="https://picsum.photos/seed/apple-logo/120/60" /></div>
+          </div>
+          <div class="row"><button class="btn btn--phos btn--sm">save</button><button class="btn btn--sm">cancel</button></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th></th><th>name</th><th>slug</th><th>country</th><th class="num">products</th><th class="actions">actions</th></tr></thead>
+            <tbody>
+              <tr><td><img class="thumb-xs" src="https://picsum.photos/seed/apple-logo/40/20" alt="" /></td><td>Apple</td><td class="mono dim">apple</td><td class="dim">USA</td><td class="num">3</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td><img class="thumb-xs" src="https://picsum.photos/seed/samsung-logo/40/20" alt="" /></td><td>Samsung</td><td class="mono dim">samsung</td><td class="dim">South Korea</td><td class="num">2</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td><img class="thumb-xs" src="https://picsum.photos/seed/sony-logo/40/20" alt="" /></td><td>Sony</td><td class="mono dim">sony</td><td class="dim">Japan</td><td class="num">1</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+              <tr><td><img class="thumb-xs" src="https://picsum.photos/seed/lg-logo/40/20" alt="" /></td><td>LG</td><td class="mono dim">lg</td><td class="dim">South Korea</td><td class="num">1</td><td class="actions"><a href="javascript:void(0)">edit</a><a class="err" href="javascript:void(0)">delete</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
