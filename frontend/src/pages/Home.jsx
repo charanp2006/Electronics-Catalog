@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
+import heroArt from '../assets/Neon_Tech_E-Commerce_Showcase.webp'
 import { getBrands, getCategories, getFeatured } from '../services/api'
 import { useApi } from '../hooks/useApi'
 import ProductGrid from '../components/ProductGrid'
@@ -31,6 +32,21 @@ export default function Home() {
       {/* ---------------------------------------------------------- hero */}
       <section className="panel frame relative overflow-hidden">
         <GridBackdrop />
+
+        {/* showcase art — sits above & behind the system-status panel */}
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+          <img
+            src={heroArt}
+            alt=""
+            className="absolute right-1 top-0 h-full w-full object-cover object-top opacity-25 mix-blend-screen sm:w-3/4 sm:opacity-40 lg:w-[100%]"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to left, black 40%, transparent 95%)',
+              maskImage: 'linear-gradient(to left, black 40%, transparent 95%)',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent" />
+        </div>
+
         <div className="relative grid gap-8 p-6 sm:p-10 lg:grid-cols-[1.5fr_1fr] lg:items-end">
           <div className="space-y-6">
             <Scramble
@@ -61,8 +77,16 @@ export default function Home() {
             </div>
           </div>
 
-          <Frame label="system status" bodyClassName="p-4 space-y-3">
-            <div className="grid grid-cols-3 gap-3">
+          <Frame
+            label="system status"
+            bodyClassName="p-4 space-y-3"
+            style={{
+              background: 'transparent',
+              // backdropFilter: 'blur(6px)',
+              // WebkitBackdropFilter: 'blur(6px)',
+            }}
+          >
+            <div className="grid grid-cols-3 gap-3 text-2xl font-bold text-ink">
               <Metric label="units" value={totalUnits} />
               <Metric label="categories" value={(categories || []).length} />
               <Metric label="brands" value={(brands || []).length} />
