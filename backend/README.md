@@ -28,7 +28,10 @@ pip install -r requirements.txt
 ```bash
 cp .env.example .env
 # Edit .env with your MongoDB URI (local or Atlas)
+# Set ENV, MongoDB URI, SECRET_KEY, ADMIN_EMAIL, ADMIN_PASSWORD
 ```
+
+> Local setup was tested with Python 3.14.3. `.python-version` pins 3.12 for Render deployment.
 
 4. Seed database
 ```bash
